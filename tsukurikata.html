@@ -1,0 +1,577 @@
+<!doctype html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>黒糖焼酎のつくりかた</title>
+<meta name="description" content="さとうきびの黒糖と米麹から生まれる黒糖焼酎。8つの工程と蒸留のしくみを、奄美群島の黒糖焼酎 推し蔵アンバサダー活動の一環でやさしく解説します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amami-kokuto-soda.github.io/tsukurikata.html">
+<meta property="og:site_name" content="黒糖焼酎KOKUTOO">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="黒糖焼酎のつくりかた｜黒糖焼酎KOKUTOO">
+<meta property="og:description" content="さとうきびの黒糖と米麹から生まれる黒糖焼酎。8つの工程と蒸留のしくみを、奄美群島の黒糖焼酎 推し蔵アンバサダー活動の一環でやさしく解説します。">
+<meta property="og:image" content="https://amami-kokuto-soda.github.io/assets/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="米麹をつくる工程から蒸留までのイラスト">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="黒糖焼酎のつくりかた｜黒糖焼酎KOKUTOO">
+<meta name="twitter:description" content="さとうきびの黒糖と米麹から生まれる黒糖焼酎。8つの工程と蒸留のしくみを、奄美群島の黒糖焼酎 推し蔵アンバサダー活動の一環でやさしく解説します。">
+<meta name="twitter:image" content="https://amami-kokuto-soda.github.io/assets/ogp.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;600;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#EEF0EA;
+    --surface:#F9FAF6;
+    --surface-2:#E6EAE1;
+    --ink:#16211E;
+    --ink-soft:#4F5B55;
+    --ink-faint:#78857D;
+    --sea:#0D5F66;
+    --molasses:#6E3A14;
+    --amber:#A96F1C;
+    --line:#D2D8CD;
+    --line-soft:#E2E6DC;
+    --recap-bg:#08383D;
+    --recap-ink:#EAF3F1;
+    --recap-soft:#A8C6C5;
+    --recap-accent:#E8B15A;
+    --recap-line:#175058;
+    --recap-chip:#0E4A50;
+    --measure:26em;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#0B1513; --surface:#121E1B; --surface-2:#182723;
+      --ink:#E9EDE5; --ink-soft:#A3AFA7; --ink-faint:#7E8B83;
+      --sea:#5AC3C7; --molasses:#CF9257; --amber:#DCA646;
+      --line:#26332E; --line-soft:#1B2825;
+      --recap-bg:#0A2A2E; --recap-ink:#E3EDEB; --recap-soft:#9CBCBB;
+      --recap-accent:#DCA646; --recap-line:#164B51; --recap-chip:#0F383D;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#0B1513; --surface:#121E1B; --surface-2:#182723;
+    --ink:#E9EDE5; --ink-soft:#A3AFA7; --ink-faint:#7E8B83;
+    --sea:#5AC3C7; --molasses:#CF9257; --amber:#DCA646;
+    --line:#26332E; --line-soft:#1B2825;
+    --recap-bg:#0A2A2E; --recap-ink:#E3EDEB; --recap-soft:#9CBCBB;
+    --recap-accent:#DCA646; --recap-line:#164B51; --recap-chip:#0F383D;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:var(--ground);color:var(--ink);
+    font-family:"Zen Kaku Gothic New","Hiragino Sans","Hiragino Kaku Gothic ProN",Meiryo,system-ui,sans-serif;
+    font-size:17px;line-height:2.1;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace}
+  h1,h2,h3,h4{font-family:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;font-weight:600;text-wrap:balance;margin:0;line-height:1.5}
+  p{margin:0}
+  ruby{ruby-position:over}
+  rt{font-size:.48em;font-weight:400;color:var(--ink-faint);letter-spacing:.04em}
+  a:focus-visible{outline:2px solid var(--sea);outline-offset:3px}
+
+  /* ---- hero ---- */
+  .hero{padding:clamp(3rem,8vw,5rem) 0 clamp(2rem,5vw,3rem)}
+  .eyebrow{
+    font-size:.72rem;letter-spacing:.22em;color:var(--sea);font-weight:500;
+    display:flex;align-items:center;gap:.7rem;margin-bottom:1.4rem;
+  }
+  .eyebrow::after{content:"";flex:1;height:1px;background:var(--line);max-width:200px}
+  h1{font-size:clamp(2.5rem,1.6rem + 4vw,4.2rem);font-weight:900;line-height:1.25;letter-spacing:.02em;margin-bottom:1.3rem}
+  .lede{font-size:clamp(1.05rem,1rem + .3vw,1.25rem);color:var(--ink-soft);max-width:23em;line-height:2.05}
+  .lede b{color:var(--ink);font-weight:700}
+
+  .facts{
+    display:grid;gap:1px;background:var(--line);border:1px solid var(--line);
+    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    margin-top:clamp(2.25rem,5vw,3rem);
+  }
+  .fact{background:var(--surface);padding:1.25rem 1.1rem 1.35rem}
+  .fact b{display:block;font-family:"Zen Old Mincho",serif;font-weight:600;font-size:1.9rem;line-height:1.2;color:var(--sea);font-variant-numeric:tabular-nums;margin-bottom:.35rem}
+  .fact span{display:block;font-size:.82rem;line-height:1.75;color:var(--ink-soft)}
+
+  /* ---- sections ---- */
+  section{padding:clamp(2.75rem,6vw,4.25rem) 0}
+  .rule{height:1px;background:var(--line);border:0;margin:0}
+  .sec-head{margin-bottom:2rem}
+  .sec-num{font-size:.72rem;letter-spacing:.2em;color:var(--ink-faint);display:block;margin-bottom:.7rem}
+  h2{font-size:clamp(1.5rem,1.25rem + 1.1vw,2.05rem);margin-bottom:.7rem}
+  .sec-head p{color:var(--ink-soft);max-width:var(--measure);font-size:.97rem;line-height:2}
+  .prose{max-width:var(--measure)}
+  .prose p + p{margin-top:.9rem}
+
+  /* ---- equation ---- */
+  .eq{display:flex;flex-direction:column;gap:.9rem;margin:0 0 1.75rem}
+  .eq-row{
+    display:flex;flex-wrap:wrap;align-items:center;gap:.55rem;
+    background:var(--surface);border:1px solid var(--line);padding:1rem 1.1rem;
+  }
+  .eq-row.win{border-color:var(--sea);border-width:2px}
+  .box{
+    font-size:.95rem;font-weight:500;line-height:1.4;padding:.5rem .8rem;
+    background:var(--surface-2);border:1px solid var(--line-soft);white-space:nowrap;
+  }
+  .box.hi{background:var(--molasses);border-color:var(--molasses);color:#FBF6F0}
+  .op{font-family:"IBM Plex Mono",monospace;color:var(--ink-faint);font-size:1rem;padding:0 .1rem}
+  .out{
+    font-family:"Zen Old Mincho",serif;font-size:1.15rem;font-weight:600;
+    color:var(--sea);white-space:nowrap;line-height:1.4;
+  }
+  .eq-row .why{
+    flex-basis:100%;font-size:.85rem;line-height:1.8;color:var(--ink-faint);margin-top:.1rem;
+  }
+
+  /* ---- step cards ---- */
+  .cards{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);grid-template-columns:1fr}
+  @media (min-width:640px){ .cards{grid-template-columns:1fr 1fr} }
+  .card{background:var(--surface);padding:1.4rem 1.35rem 1.6rem;display:flex;flex-direction:column}
+  .card-top{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:.5rem}
+  .card-no{font-family:"IBM Plex Mono",monospace;font-size:1.9rem;line-height:1;color:var(--amber);font-variant-numeric:tabular-nums}
+  .badge{
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.03em;
+    color:var(--ink-soft);border:1px solid var(--line);padding:.2rem .55rem;white-space:nowrap;
+  }
+  .card h3{font-size:1.2rem;line-height:1.55;margin-bottom:.35rem}
+  .card p{font-size:.97rem;line-height:1.95;color:var(--ink-soft)}
+  .card em{font-style:normal;color:var(--ink);font-weight:700}
+
+  /* ---- diagram ---- */
+  figure{margin:0;max-width:34em}
+  .still{width:100%;height:auto;display:block;background:var(--surface);border:1px solid var(--line);padding:.5rem}
+  figcaption{font-size:.85rem;line-height:1.85;color:var(--ink-faint);margin-top:.75rem;max-width:var(--measure)}
+
+  .two{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:1.75rem;max-width:34em;grid-template-columns:1fr}
+  @media (min-width:600px){ .two{grid-template-columns:1fr 1fr} }
+  .two > div{background:var(--surface);padding:1.2rem 1.15rem 1.35rem}
+  .two h4{font-size:1.08rem;margin-bottom:.1rem}
+  .two .temp{display:block;font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--amber);margin-bottom:.55rem}
+  .two p{font-size:.93rem;line-height:1.9;color:var(--ink-soft)}
+
+  /* ---- table ---- */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--line);background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:540px;font-size:.94rem}
+  th,td{padding:.85rem 1rem;text-align:left;vertical-align:middle;border-bottom:1px solid var(--line-soft)}
+  thead th{font-family:"Zen Kaku Gothic New",sans-serif;font-weight:500;font-size:.75rem;letter-spacing:.08em;color:var(--ink-faint);border-bottom:1px solid var(--line);white-space:nowrap}
+  tbody th{font-family:"Zen Old Mincho",serif;font-weight:600;font-size:1.02rem;white-space:nowrap}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+  tbody tr.is-focus{background:var(--surface-2)}
+  tbody tr.is-focus th{color:var(--sea)}
+  td.dim{color:var(--ink-soft)}
+  .tag{font-family:"IBM Plex Mono",monospace;font-size:.73rem;padding:.18rem .5rem;border:1px solid var(--line);color:var(--ink-soft);white-space:nowrap}
+  .tag.no{border-color:var(--sea);color:var(--sea)}
+  .after{margin-top:1.5rem;max-width:var(--measure);font-size:.97rem;line-height:2;color:var(--ink-soft)}
+  .after b{color:var(--ink)}
+
+  /* ---- recap ---- */
+  .recap{background:var(--recap-bg);color:var(--recap-ink);padding:clamp(2.75rem,6vw,4rem) 0 clamp(3rem,6vw,4.25rem);margin-top:clamp(1.5rem,4vw,2.5rem)}
+  .recap h2{color:var(--recap-ink)}
+  .recap .sec-num,.recap .sec-head p{color:var(--recap-soft)}
+  .flow{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.25rem}
+  .chip{display:flex;flex-direction:column;gap:.1rem;background:var(--recap-chip);border:1px solid var(--recap-line);padding:.55rem .75rem .6rem;flex:1 1 112px;min-width:112px}
+  .chip i{font-style:normal;font-family:"IBM Plex Mono",monospace;font-size:.68rem;color:var(--recap-accent);letter-spacing:.08em}
+  .chip span{font-size:.87rem;line-height:1.6}
+  .keys{display:grid;gap:1px;background:var(--recap-line);border:1px solid var(--recap-line);grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+  .keys > div{background:var(--recap-bg);padding:1.2rem 1.2rem 1.35rem}
+  .keys h3{font-size:1.02rem;color:var(--recap-accent);margin-bottom:.3rem}
+  .keys p{font-size:.9rem;line-height:1.9;color:var(--recap-soft)}
+  .taste{display:flex;flex-wrap:wrap;gap:.6rem 2rem;margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--recap-line);font-size:.92rem;color:var(--recap-soft)}
+  .taste b{color:var(--recap-ink);font-weight:500}
+
+  footer{padding:2.5rem 0 3.25rem;font-size:.85rem;line-height:2;color:var(--ink-faint)}
+  footer p + p{margin-top:.7rem}
+  footer strong{color:var(--ink-soft);font-weight:500}
+
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+html{scroll-behavior:smooth}.wrap{max-width:1140px}.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:2rem}.hero-art{max-width:none;border-radius:45% 45% 4px 4px;overflow:hidden;border:1px solid var(--line)}.art{background-image:url("assets/images/process-grid.jpg");background-size:400% 200%;background-repeat:no-repeat;aspect-ratio:.75;background-color:#f7f3e9}.hero-art figcaption{margin:0;padding:.8rem 1rem;background:var(--surface);color:var(--ink-soft)}.chapter-nav{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin-top:1.5rem}.chapter-nav a{color:var(--sea);font-size:.875rem;text-decoration:none}.chapter-nav a:hover{text-decoration:underline}.cards{gap:1.4rem;background:none;border:0}.card{padding:0 0 1.6rem;overflow:hidden;border:1px solid var(--line);border-radius:5px}.card .art{margin-bottom:1.2rem;border-bottom:1px solid var(--line)}.card-top,.card h3,.card p{margin-left:1.4rem;margin-right:1.4rem}.card p{font-size:1rem}.badge,.fact span{font-size:.875rem}.sec-num,.eyebrow{font-size:.8125rem}.sec-head p,.prose,.after{max-width:38em}.ingredient-strip{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem;max-width:650px}.ingredient-strip figure{border:1px solid var(--line);overflow:hidden;background:var(--surface)}.ingredient-strip figcaption{margin:0;padding:.6rem 1rem;color:var(--ink);font-size:1rem}.image-note{font-size:.8125rem;color:var(--ink-faint)}@media(max-width:650px){.hero-grid{grid-template-columns:1fr}.hero-art{border-radius:4px;width:100%;max-width:280px;margin:auto}.facts{grid-template-columns:1fr 1fr}.card-top,.card h3,.card p{margin-left:1.1rem;margin-right:1.1rem}}</style>
+
+</head><body><div id="site-nav-kokuto" style="position:sticky;top:0;z-index:999;background:#16120d;border-bottom:1px solid rgba(255,255,255,.12);font-family:-apple-system,'Hiragino Sans',sans-serif"><div style="max-width:1000px;margin:0 auto;padding:10px 22px;display:flex;gap:18px;align-items:center;font-size:13px"><a href="index.html" style="color:#e7e2d8;text-decoration:none;opacity:.85">黒糖焼酎KOKUTOO</a><span style="flex:1"></span><a href="tsukurikata.html" style="color:#f2d9a8;text-decoration:none;font-weight:700">つくりかた</a><a href="map.html" style="color:#e7e2d8;text-decoration:none;opacity:.85">ポジショニングマップ</a></div></div><header class="hero">
+  <div class="wrap">
+    <div class="hero-grid"><div><p class="eyebrow mono">AMAMI / KAGOSHIMA</p>
+    <h1>黒糖焼酎の<br>つくりかた</h1>
+    <p class="lede">さとうきびの<b>黒糖</b>からつくるお酒です。<br>でも、ラムではなく「焼酎」。<br>日本では、<ruby>奄美<rt>あまみ</rt></ruby>の島でしかつくれません。</p>
+
+</div><figure class="hero-art"><div class="art" role="img" aria-label="透明な焼酎のびんとグラスのイラスト" style="background-position:100% 100%"></div><figcaption>黒糖の香りを、透明な一滴へ。</figcaption></figure></div><nav class="chapter-nav" aria-label="ページ内の目次"><a href="#about">01 焼酎になる理由</a><a href="#process">02 8つの工程</a><a href="#distillation">03 蒸留のしくみ</a><a href="#comparison">04 お酒のちがい</a></nav><div class="facts">
+      <div class="fact"><b class="mono">5島</b><span>つくることができる島の数</span></div>
+      <div class="fact"><b><ruby>米麹<rt>こめこうじ</rt></ruby></b><span>これを使うから「焼酎」になる</span></div>
+      <div class="fact"><b class="mono">1953</b><span>特別なルールができた年</span></div>
+      <div class="fact"><b class="mono">0 g</b><span>できあがったお酒に残る<ruby>糖質<rt>とうしつ</rt></ruby></span></div>
+    </div>
+  </div>
+</header>
+<style id="approved-editorial-layout">
+body .hero{padding:2.5rem 0 1rem;background-size:cover;background-position:center}
+body .hero-grid{grid-template-columns:minmax(0,1fr) 280px;gap:3rem;min-height:370px}
+body .hero-art{width:240px;justify-self:center;border-radius:4px;max-width:100%;box-shadow:0 12px 40px #1b0d0866}
+body .hero h1{font-size:clamp(2.5rem,5vw,4.3rem)}
+body .hero .facts{margin-top:1.5rem;border-left:0;border-right:0}
+body .hero .fact{padding:1rem;background:#321b10e8}
+body section{padding:2rem 0;margin-top:1rem;margin-bottom:1rem}
+body .sec-head{margin-bottom:1.3rem}
+body #about>.wrap{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,.8fr);gap:1rem 2rem}
+body #about .sec-head{grid-column:1;grid-row:1;margin:0}
+body #about .ingredient-strip{grid-column:2;grid-row:1 / span 3;align-self:center;margin:0;gap:.8rem}
+body #about .ingredient-strip figure{border:0;background:transparent}
+body #about .ingredient-strip .art{max-width:140px;margin:auto;border-radius:4px}
+body #about .ingredient-strip figcaption{text-align:center;padding:.5rem 0;font-size:.875rem}
+body #about .eq{grid-column:1;margin:0;gap:.6rem}
+body #about .prose{grid-column:1;max-width:none}
+body #about .eq-row{padding:.7rem}
+body #process .cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+body #process .card{display:grid;grid-template-columns:90px minmax(0,1fr);grid-template-rows:auto auto 1fr;column-gap:1rem;row-gap:.3rem;padding:1rem;align-content:start}
+body #process .card .art{grid-column:1;grid-row:1 / span 3;width:90px;margin:0;align-self:start}
+body #process .card-top{grid-column:2;margin:0;align-items:center}
+body #process .card-no{font-size:1.6rem}
+body #process .card h3{grid-column:2;margin:0;font-size:1.1rem}
+body #process .card p{grid-column:2;margin:0;font-size:1rem;line-height:1.85}
+body #process .badge{font-size:.8125rem;white-space:normal;text-align:right}
+body #distillation>.wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem 2rem;align-items:start}
+body #distillation .sec-head{grid-column:1;margin:0}
+body #distillation figure{grid-column:2;grid-row:1 / span 2;width:100%;align-self:center}
+body #distillation .two{grid-column:1;margin:0;max-width:none}
+body #distillation .after{grid-column:1 / -1;margin:0}
+body #comparison .after{max-width:none;columns:2;column-gap:2rem}
+body #comparison .after p{break-inside:avoid}
+body .recap{padding:2rem 0}
+body .recap>.wrap{position:relative;padding-right:300px;min-height:380px}
+body .recap-scene{display:block;margin-bottom:1.5rem}
+body .recap-scene .sec-head{padding:0}
+body .recap-drink{position:absolute;right:3rem;top:1rem;width:200px;border-radius:4px}
+body .recap .recap-invitation{font-size:1.15rem;margin-top:.6rem}
+body .recap .keys{grid-template-columns:repeat(2,minmax(0,1fr))}
+body .recap .flow{gap:.4rem;margin-bottom:1rem}
+body .recap .chip{min-width:90px;flex-basis:90px}
+@media(max-width:800px){body #about>.wrap,body #distillation>.wrap{grid-template-columns:1fr}body #about .sec-head,body #about .ingredient-strip,body #about .eq,body #about .prose,body #distillation .sec-head,body #distillation figure,body #distillation .two,body #distillation .after{grid-column:1;grid-row:auto}body #about .ingredient-strip{grid-row:2;max-width:330px;justify-self:center;width:100%}body #comparison .after{columns:1}body .recap>.wrap{padding-right:clamp(1.25rem,5vw,3rem)}body .recap-scene{display:grid;grid-template-columns:1fr 150px;gap:1rem}body .recap-drink{position:static;width:150px}body .recap-scene .sec-head{text-align:left}}
+@media(max-width:650px){body .hero-grid{grid-template-columns:1fr;gap:1rem;min-height:0}body .hero-art{width:180px}body #process .cards{grid-template-columns:1fr}body #process .card{grid-template-columns:76px minmax(0,1fr);padding:.9rem;column-gap:.8rem}body #process .card .art{width:76px}body .recap-scene{grid-template-columns:1fr 110px}body .recap-drink{width:110px}body .recap-scene h2{font-size:1.55rem}body .recap .keys{grid-template-columns:1fr}body .hero .facts{grid-template-columns:1fr 1fr}}
+</style>
+<style id="whole-page-kokuto-theme">
+  :root,:root[data-theme="dark"],:root:not([data-theme="light"]){
+    --ground:#352014;--surface:#fff5e3;--surface-2:#efdfc1;
+    --ink:#352014;--ink-soft:#695039;--ink-faint:#806349;
+    --sea:#85551f;--molasses:#66391e;--amber:#986224;
+    --line:#d7be96;--line-soft:#e8d8ba;
+  }
+  body{background:radial-gradient(ellipse at 15% 0%,#71472866,transparent 45%),linear-gradient(135deg,#28170e,#51301b 55%,#302015);}
+  .hero{color:#fff1d6;--ink:#fff1d6;--ink-soft:#eddbc0;--ink-faint:#d2b793;--sea:#efc786;--line:#a17b4e;}
+  .hero .eyebrow{color:#efc786}
+  .hero .facts{background:#947048;border-color:#947048}
+  .hero .fact{background:#3a2318;}
+  .hero .fact b{color:#efc786}
+  .hero-art{border-color:#a17b4e;box-shadow:0 18px 45px #190d0866}
+  .hero-art figcaption{background:#3a2318;color:#f2dec0}
+  .chapter-nav a{color:#efc786}
+  section{max-width:1100px;margin:1.25rem auto;padding:clamp(2rem,5vw,3.5rem) 0;background:linear-gradient(120deg,#fff6e5,#f3e5cb);border:1px solid #d7be96;border-radius:8px;box-shadow:0 8px 25px #170c0726;}
+  .rule{max-width:1100px;margin:0 auto;background:#b2884b55}
+  .card{background:#fff8eb;border-color:#dcc5a1;box-shadow:0 3px 10px #57301808}
+  .ingredient-strip figure{background:#fff8eb}
+  .still{background:#fff8eb}
+  .tbl-scroll{background:#fff8eb}
+  footer{color:#d5bea0;--ink-soft:#efdbbc;--ink-faint:#d5bea0;}
+  footer .image-note{color:#d5bea0}
+  @media(max-width:1140px){section{margin:1rem;}.rule{margin:0 1rem}}
+  @media(max-width:650px){section{margin:.8rem;border-radius:6px}section .wrap{padding:0 1.1rem}}
+</style>
+<style>
+.recap{position:relative;overflow:hidden;background-color:#392013;background-image:linear-gradient(110deg,rgba(31,14,7,.56),rgba(50,25,12,.25)),url("assets/images/kokuto-block.jpg");background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat;border-top:3px solid #c49651;--recap-ink:#fff7e8;--recap-soft:#ead8c4;--recap-accent:#efc786;--recap-line:#8c6545;--recap-chip:#422617}
+.recap-scene{display:grid;grid-template-columns:1fr 300px;gap:2rem;align-items:center;margin-bottom:2.5rem}
+.recap-scene .sec-head{margin:0;padding:1rem 0}
+.recap-scene h2{font-size:clamp(1.8rem,3.4vw,2.6rem)}
+.recap .recap-invitation{font-family:"Zen Old Mincho","Yu Mincho",serif;color:#efc786;font-size:clamp(1.2rem,2.2vw,1.55rem);line-height:1.9;margin-top:1.4rem;letter-spacing:.06em}
+.recap-drink{width:100%;aspect-ratio:3 / 4;border-radius:150px 150px 10px 10px;border:1px solid #e8bc7770;box-shadow:0 22px 50px #00191d88,0 0 65px #d4a34d18}
+.recap .chip{background:#422617eb;border-color:#c09a6855}
+.recap .keys{background:#c09a6855;border-color:#c09a6855}
+.recap .keys>div{background:#321c11ef}
+.recap .taste{border-color:#c09a6866}
+.recap-drink{box-shadow:0 22px 50px #1c0d0988,0 0 65px #d4a34d18}
+@media(max-width:650px){.recap-scene{grid-template-columns:1fr;gap:1rem}.recap-drink{width:210px;justify-self:center}.recap-scene .sec-head{text-align:center}.recap .recap-invitation{max-width:none;margin-top:.8rem}}
+</style>
+<style>
+  #process .card .art {
+    width: 120px;
+    aspect-ratio: 3 / 4;
+    flex: 0 0 auto;
+    margin: 1.2rem 1.4rem 1rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  @media (max-width: 650px) {
+    #process .card .art { width: 96px; margin-left: 1.1rem; }
+  }
+</style>
+
+<hr class="rule">
+
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">その1</span>
+      <h2>なぜ「焼酎」なの？</h2>
+      <p>黒糖は、さとうきびのしぼり汁を<ruby>煮<rt>に</rt></ruby>つめた、さとうのかたまり。ふつう、さとうからつくったお酒は「ラム」になります。</p>
+    </div>
+
+    <div class="ingredient-strip"><figure><div class="art" role="img" aria-label="黒糖のイラスト" style="background-position:66.66666666666667% 0%"></div><figcaption>黒糖 — 香りのもと</figcaption></figure><figure><div class="art" role="img" aria-label="米麹のイラスト" style="background-position:0% 0%"></div><figcaption>米麹 — 仕込みの出発点</figcaption></figure></div><div class="eq">
+      <div class="eq-row win">
+        <span class="box hi">黒糖</span>
+        <span class="op">＋</span>
+        <span class="box">米麹</span>
+        <span class="op">→</span>
+        <span class="out">黒糖焼酎</span>
+        <span class="why">米麹を使うと、焼酎と呼んでよい。ただし奄美の島でつくったものだけ。</span>
+      </div>
+      <div class="eq-row">
+        <span class="box hi">黒糖</span>
+        <span class="op">だけ</span>
+        <span class="op">→</span>
+        <span class="out" style="color:var(--ink-faint)">ラム</span>
+        <span class="why">米麹を使わなければ、法律のうえではラムのなかま。</span>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p>1953年、奄美の島々がアメリカから日本にもどってきました。島にはもう黒糖のお酒をつくる仕事があった。それを急にラムあつかいにしたら、島の人が困ってしまう。</p>
+      <p>そこで<em style="font-style:normal;font-weight:700">「米麹を使うなら焼酎と呼んでいい」</em>という特別なルールができました。だから黒糖焼酎づくりは、黒糖ではなく<b>米</b>からはじまります。</p>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="process">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">その2 — 8つのステップ</span>
+      <h2>米から、びんに入るまで</h2>
+      <p>日数や温度は、つくる<ruby>蔵<rt>くら</rt></ruby>によって少しちがいます。だいたいの目安です。</p>
+    </div>
+
+    <div class="cards">
+
+      <article class="card"><div class="art" role="img" aria-label="木のトレーに広げた米麹のイラスト" style="background-position:0% 0%"></div>
+        <div class="card-top"><span class="card-no">01</span><span class="badge">2日</span></div>
+        <h3>米をむして、<ruby>麹<rt>こうじ</rt></ruby>をつくる</h3>
+        <p>むした米に、<em>麹菌</em>というカビのなかまをつけます。2日かけて、米の中まで菌をのばします。この菌が、あとで<ruby>雑菌<rt>ざっきん</rt></ruby>からお酒を守ってくれます。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="水と米麹を仕込んだ甕のイラスト" style="background-position:33.333333333333336% 0%"></div>
+        <div class="card-top"><span class="card-no">02</span><span class="badge">5〜6日</span></div>
+        <h3>水と<ruby>酵母<rt>こうぼ</rt></ruby>を入れる</h3>
+        <p>米麹に水と酵母を加えます。ねらいは、<em>酵母をたくさん増やすこと</em>。酵母は、糖を食べてアルコールに変える生き物です。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="黒糖とシロップのイラスト" style="background-position:66.66666666666667% 0%"></div>
+        <div class="card-top"><span class="card-no">03</span><span class="badge">とかす</span></div>
+        <h3>黒糖をとかす</h3>
+        <p>かたい黒糖を、お湯でとかしてシロップにします。<em>よく冷ましてから</em>使います。熱いままだと酵母が死んでしまうからです。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="泡が立つ発酵中のもろみのイラスト" style="background-position:100% 0%"></div>
+        <div class="card-top"><span class="card-no">04</span><span class="badge">約2週間</span></div>
+        <h3><ruby>発酵<rt>はっこう</rt></ruby>させる</h3>
+        <p>シロップを入れると、酵母が糖を食べはじめます。ぶくぶくとあわが立ち、2週間ほどでアルコールが<em>15度くらい</em>になります。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="蒸留釜と冷却装置のイラスト" style="background-position:0% 100%"></div>
+        <div class="card-top"><span class="card-no">05</span><span class="badge">1回だけ</span></div>
+        <h3><ruby>蒸留<rt>じょうりゅう</rt></ruby>する</h3>
+        <p>あたためて<ruby>湯気<rt>ゆげ</rt></ruby>にして、冷やしてお酒にもどします。何回もやると香りが消えるので、<em>本格焼酎は1回だけ</em>と決まっています。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="熟成させる甕のイラスト" style="background-position:33.333333333333336% 100%"></div>
+        <div class="card-top"><span class="card-no">06</span><span class="badge">数ヶ月〜数年</span></div>
+        <h3><ruby>熟成<rt>じゅくせい</rt></ruby>させる</h3>
+        <p>できたてはトゲトゲした味。タンクや<ruby>甕<rt>かめ</rt></ruby>でねかせると、まろやかになります。3年以上ねかせたものは<em>古酒（クース）</em>と呼ばれます。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="水を加えて度数を整える様子のイラスト" style="background-position:66.66666666666667% 100%"></div>
+        <div class="card-top"><span class="card-no">07</span><span class="badge">40度 → 25度</span></div>
+        <h3>水でうすめる</h3>
+        <p>できたお酒は40度くらいで、強すぎます。仕込みと同じ水でうすめて、<em>25度か30度</em>にそろえます。</p>
+      </article>
+
+      <article class="card"><div class="art" role="img" aria-label="透明な焼酎のびんとグラスのイラスト" style="background-position:100% 100%"></div>
+        <div class="card-top"><span class="card-no">08</span><span class="badge">できあがり</span></div>
+        <h3>こして、びんに入れる</h3>
+        <p>うかんできた<ruby>油<rt>あぶら</rt></ruby>をこしとって、びんにつめます。米をむしてから、早くて<em>1ヶ月ちょっと</em>です。</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="distillation">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">その3</span>
+      <h2>蒸留って、なにをしているの？</h2>
+      <p>アルコールは水より低い温度で湯気になります。その性質を使って、アルコールだけを取り出す作業です。</p>
+    </div>
+
+    <figure>
+      <svg class="still" viewBox="45 30 400 288" role="img" aria-label="蒸留のしくみの図。左のかまで発酵したもろみをあたため、立ちのぼった湯気が上の管を通って右の冷やす装置へ入り、冷えてお酒にもどり、下の受け器に落ちる。">
+        <g fill="none" stroke="var(--line)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 62 258 L 188 258" stroke="var(--line)" stroke-width="3"/>
+          <path d="M 103 252 C 100 244 108 242 106 234 C 114 240 113 248 110 252 Z" fill="var(--amber)" stroke="none" opacity=".85"/>
+          <path d="M 121 253 C 117 242 128 239 125 228 C 136 236 135 247 130 253 Z" fill="var(--amber)" stroke="none"/>
+          <path d="M 141 252 C 138 244 146 242 144 234 C 152 240 151 248 148 252 Z" fill="var(--amber)" stroke="none" opacity=".85"/>
+          <path d="M 70 136 L 70 198 Q 70 232 125 232 Q 180 232 180 198 L 180 136 Z" fill="var(--surface-2)"/>
+          <path d="M 76 180 L 76 198 Q 76 226 125 226 Q 174 226 174 198 L 174 180 Z" fill="var(--molasses)" stroke="none"/>
+          <path d="M 76 180 L 174 180" stroke="var(--molasses)" stroke-width="2"/>
+          <ellipse cx="125" cy="136" rx="55" ry="9" fill="var(--surface)"/>
+          <path d="M 108 168 C 114 160 104 154 110 146" stroke="var(--sea)" stroke-width="2" opacity=".7"/>
+          <path d="M 142 170 C 148 162 138 156 144 148" stroke="var(--sea)" stroke-width="2" opacity=".7"/>
+          <path d="M 125 127 L 125 96 Q 125 72 152 72 L 262 72 Q 288 72 288 98" stroke="var(--ink-soft)" stroke-width="9"/>
+          <rect x="262" y="98" width="52" height="118" rx="12" fill="var(--surface-2)"/>
+          <path d="M 270 114 C 270 106 306 106 306 114 C 306 122 270 122 270 130 C 270 138 306 138 306 146 C 306 154 270 154 270 162 C 270 170 306 170 306 178 C 306 186 270 186 270 194 C 270 202 288 204 288 204" stroke="var(--sea)" stroke-width="3"/>
+          <path d="M 288 216 L 288 240" stroke="var(--ink-soft)" stroke-width="6"/>
+          <circle cx="288" cy="250" r="3.2" fill="var(--amber)" stroke="none"/>
+          <path d="M 266 258 L 271 278 Q 272 283 278 283 L 298 283 Q 304 283 305 278 L 310 258 Z" fill="var(--surface)"/>
+          <path d="M 269 270 L 271 278 Q 272 283 278 283 L 298 283 Q 304 283 305 278 L 307 270 Z" fill="var(--amber)" stroke="none"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="var(--ink-soft)">
+          <text x="125" y="300" text-anchor="middle">① あたためる</text>
+          <text x="200" y="55" text-anchor="middle">② 湯気になる</text>
+          <text x="330" y="152">③ 冷やす</text>
+          <text x="288" y="303" text-anchor="middle" fill="var(--amber)">④ お酒になる</text>
+        </g>
+      </svg>
+      <figcaption>あたためて、冷やして、もどすだけ。この装置は「かま1つ・管1本・冷やす筒1つ」でできています。</figcaption>
+    </figure>
+
+    <div class="two">
+      <div>
+        <h4><ruby>常圧<rt>じょうあつ</rt></ruby>蒸留</h4>
+        <span class="temp">90℃より高い温度で</span>
+        <p>そのままの空気の重さであたためる方法。こうばしくて、味の濃いお酒になります。</p>
+      </div>
+      <div>
+        <h4><ruby>減圧<rt>げんあつ</rt></ruby>蒸留</h4>
+        <span class="temp">40〜50℃の低い温度で</span>
+        <p>かまの中の空気をぬくと、低い温度で湯気になります。かるくて、くだもののような香りになります。</p>
+      </div>
+    </div>
+    <p class="after">同じお店の同じもろみでも、<b>ここのやり方だけで別のお酒</b>になります。</p>
+  </div>
+</section>
+
+<hr class="rule">
+
+<section id="comparison">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num mono">その4</span>
+      <h2>ほかのお酒とのちがい</h2>
+      <p>いちばん大きなちがいは、<b>「<ruby>糖化<rt>とうか</rt></ruby>」がいるかどうか</b>です。</p>
+    </div>
+
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">お酒</th>
+            <th scope="col">おもな原料</th>
+            <th scope="col">糖化</th>
+            <th scope="col">つくる場所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="is-focus">
+            <th scope="row">黒糖焼酎</th>
+            <td>黒糖 ＋ 米</td>
+            <td><span class="tag no">いらない</span></td>
+            <td class="dim">奄美の5つの島</td>
+          </tr>
+          <tr>
+            <th scope="row">芋焼酎</th>
+            <td>さつまいも ＋ 米</td>
+            <td><span class="tag">いる</span></td>
+            <td class="dim">鹿児島・宮崎</td>
+          </tr>
+          <tr>
+            <th scope="row">麦焼酎</th>
+            <td>大麦</td>
+            <td><span class="tag">いる</span></td>
+            <td class="dim">大分・<ruby>壱岐<rt>いき</rt></ruby></td>
+          </tr>
+          <tr>
+            <th scope="row">泡盛</th>
+            <td>タイ米</td>
+            <td><span class="tag">いる</span></td>
+            <td class="dim">沖縄</td>
+          </tr>
+          <tr>
+            <th scope="row">ラム</th>
+            <td>さとうきび</td>
+            <td><span class="tag no">いらない</span></td>
+            <td class="dim">世界のあちこち</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="after">
+      <p><b>糖化とは？</b>　いも・麦・米の中身は<ruby>糖<rt>とう</rt></ruby>ではなく「でんぷん」です。酵母はでんぷんを食べられないので、まず糖に変える作業がいります。これが糖化。</p>
+      <p style="margin-top:.9rem">黒糖は<b>はじめから糖</b>。だからこの作業をとばして、すぐ発酵に入れます。</p>
+      <p style="margin-top:.9rem">そして<b>黒糖焼酎とラムは、原料がほとんど同じ</b>。ちがいは、米麹を使うかどうかだけです。</p>
+    </div>
+  </div>
+</section>
+
+<div class="recap">
+  <div class="wrap">
+    <div class="recap-scene"><div class="sec-head">
+      <span class="sec-num mono">まとめ</span>
+      <h2>ここだけ覚えて帰る</h2>
+      <p class="recap-invitation">黒糖の甘い香り。<br>ゆっくり味わう、島の一杯。</p>
+    </div><div class="recap-drink art" role="img" aria-label="木の盆に置かれた黒糖焼酎のびんとグラスのイラスト" style="background-position:100% 100%"></div></div>
+
+    <div class="flow">
+      <div class="chip"><i>01</i><span>米を麹にする</span></div>
+      <div class="chip"><i>02</i><span>酵母を増やす</span></div>
+      <div class="chip"><i>03</i><span>黒糖をとかす</span></div>
+      <div class="chip"><i>04</i><span>発酵 2週間</span></div>
+      <div class="chip"><i>05</i><span>蒸留 1回</span></div>
+      <div class="chip"><i>06</i><span>ねかせる</span></div>
+      <div class="chip"><i>07</i><span>水でうすめる</span></div>
+      <div class="chip"><i>08</i><span>びんにつめる</span></div>
+    </div>
+
+    <div class="keys">
+      <div>
+        <h3>つくれるのは5つの島だけ</h3>
+        <p>奄美大島・喜界島・徳之島・沖永良部島・与論島。ほかの場所では名乗れません。</p>
+      </div>
+      <div>
+        <h3>米麹を使うから「焼酎」</h3>
+        <p>使わなければ、ルールのうえではラムになります。</p>
+      </div>
+      <div>
+        <h3>糖化がいらない</h3>
+        <p>黒糖ははじめから糖。ほかの焼酎との、いちばん大きなちがい。</p>
+      </div>
+      <div>
+        <h3>糖質はゼロ</h3>
+        <p>あまい香りは残っても、糖そのものはかまに置いていかれます。</p>
+      </div>
+    </div>
+
+    <div class="taste">
+      <span><b>常圧</b> ＝ こうばしい・濃い</span>
+      <span><b>減圧</b> ＝ かるい・くだもののよう</span>
+      <span><b>古酒</b> ＝ 3年以上ねかせたもの</span>
+    </div>
+  </div>
+</div>
+
+<footer><div class="wrap"><p class="image-note">工程の画像は、しくみを伝えるためのイメージイラストです。実際の設備や製法は蔵によって異なります。</p></div>
+  <div class="wrap">
+    <p><strong>注意。</strong>日本では、お酒を自分でつくることは法律で<ruby>禁止<rt>きんし</rt></ruby>されています。このページは、しくみを知るためのものです。</p>
+    <p>日数・温度・度数は、つくる蔵によって幅があります。ここに書いたのは目安です。</p>
+  </div>
+</footer>
+<script>
+document.querySelector('.hero').style.backgroundImage = getComputedStyle(document.querySelector('.recap')).backgroundImage;
+</script>
+</body></html>

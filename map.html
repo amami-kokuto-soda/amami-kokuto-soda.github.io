@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>黒糖焼酎ポジショニングマップ β</title>
+<meta name="description" content="奄美群島19蔵・92銘柄の公開情報から作った黒糖焼酎の診断・記録ツール。4つの質問で今日の1本を探せます。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://amami-kokuto-soda.github.io/map.html">
+<meta property="og:site_name" content="黒糖焼酎KOKUTOO">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="黒糖焼酎ポジショニングマップ｜黒糖焼酎KOKUTOO">
+<meta property="og:description" content="奄美群島19蔵・92銘柄の公開情報から作った黒糖焼酎の診断・記録ツール。4つの質問で今日の1本を探せます。">
+<meta property="og:image" content="https://amami-kokuto-soda.github.io/assets/ogp.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="黒糖焼酎ポジショニングマップのスクリーンショット">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="黒糖焼酎ポジショニングマップ｜黒糖焼酎KOKUTOO">
+<meta name="twitter:description" content="奄美群島19蔵・92銘柄の公開情報から作った黒糖焼酎の診断・記録ツール。4つの質問で今日の1本を探せます。">
+<meta name="twitter:image" content="https://amami-kokuto-soda.github.io/assets/ogp.jpg">
+
+<style>
+:root{
+  --ink:#16323f; --ink-2:#48626d; --line:#e3dbcf; --bg:#faf7f2; --card:#fff;
+  --accent:#b5651d; --accent-2:#8c4a12; --ok:#2e7d5b; --warn:#a8760f;
+  --i-amami:#1f6f8b; --i-kikai:#4a8c5f; --i-toku:#b5651d; --i-oki:#7a5aa8; --i-yoron:#c0526a;
+}
+*{box-sizing:border-box}
+body{margin:0;color:var(--ink);
+  background:
+    linear-gradient(rgba(250,247,242,.90),rgba(250,247,242,.90)),
+    url("assets/images/map-bg-page.jpg") 0 0/423px auto repeat;
+  font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+  line-height:1.7;-webkit-font-smoothing:antialiased}
+header{color:#fdfbf7;padding:26px 22px 20px;
+  background:
+    linear-gradient(160deg,rgba(22,50,63,.82),rgba(31,85,102,.58)),
+    url("assets/images/map-bg-header.jpg") center/cover no-repeat}
+header h1,header .sub{text-shadow:0 1px 4px rgba(0,0,0,.45)}
+.wrap{max-width:1080px;margin:0 auto}
+h1{margin:0;font-size:23px;letter-spacing:.04em;font-weight:700}
+.sub{margin:6px 0 0;font-size:13px;opacity:.85;line-height:1.6}
+.badge{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+  border-radius:99px;padding:1px 9px;font-size:11px;margin-left:8px;vertical-align:2px}
+nav{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+nav .wrap{display:flex;gap:2px;overflow-x:auto}
+nav button{background:none;border:none;border-bottom:3px solid transparent;padding:13px 16px;
+  font:inherit;font-size:14px;color:var(--ink-2);cursor:pointer;white-space:nowrap}
+nav button:hover{color:var(--ink)}
+nav button[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);font-weight:700}
+main{padding:24px 22px 80px}
+section[hidden]{display:none}
+h2{font-size:17px;margin:0 0 4px;letter-spacing:.02em}
+.lead{color:var(--ink-2);font-size:13.5px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:14px}
+.q{font-weight:700;font-size:15px;margin:0 0 10px}
+.qnote{font-size:12px;color:var(--ink-2);margin:-5px 0 11px;line-height:1.65}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1.5px solid var(--line);background:#fff;border-radius:9px;padding:9px 14px;
+  font:inherit;font-size:13.5px;cursor:pointer;color:var(--ink);transition:.12s}
+.opt:hover{border-color:var(--accent);color:var(--accent)}
+.opt[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.btn{background:var(--accent);color:#fff;border:none;border-radius:9px;padding:11px 22px;
+  font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--accent-2)}
+.btn.ghost{background:none;color:var(--ink-2);border:1.5px solid var(--line)}
+.btn.ghost:hover{color:var(--accent);border-color:var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.res{border-left:4px solid var(--accent);padding:14px 18px;margin-bottom:12px;background:var(--card);
+  border-radius:0 10px 10px 0;border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.res h3{margin:0 0 3px;font-size:17px}
+.res .kura{color:var(--ink-2);font-size:12.5px;margin:0 0 9px}
+.why{font-size:13px;color:var(--ink-2);margin:8px 0 0;padding-top:9px;border-top:1px dashed var(--line)}
+.why b{color:var(--ok);font-weight:700}
+.chk{list-style:none;margin:9px 0 0;padding:9px 0 0;border-top:1px dashed var(--line);font-size:12.5px}
+.chk li{margin:3px 0;color:var(--ink-2)}
+.ck{display:inline-block;min-width:7.2em;font-size:11px;font-weight:700;border-radius:5px;
+  padding:1px 7px;margin-right:8px;text-align:center}
+.ck.y{background:#e6f4ec;color:var(--ok)}
+.ck.n{background:#f1efeb;color:#8b8377}
+.ck.u{background:#fdf3e0;color:var(--warn)}
+.uw{font-size:11.5px;color:var(--warn);margin-left:4px}
+.award-note{font-size:11.5px;color:var(--warn);margin:5px 0 0;line-height:1.6}
+details{margin-bottom:14px;border:1px solid var(--line);border-radius:12px;background:var(--card);overflow:hidden}
+summary{cursor:pointer;padding:13px 18px;font-size:14px;background:#f4efe7}
+summary:hover{background:#efe8dc}
+.grp{padding:14px 16px 4px}
+.grp .res{background:#fdfbf8}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0}
+.tag{font-size:11.5px;border-radius:5px;padding:2px 8px;background:#f2ece2;color:var(--ink-2);white-space:nowrap}
+.tag.isl{color:#fff}
+.tag.unk{background:#fdf3e0;color:var(--warn);border:1px dashed #e0c68c}
+.tag.joint{background:#eef2fb;color:#3a5a9c;border:1px solid #ccd8ee}
+table{width:100%;border-collapse:collapse;font-size:13px;background:var(--card)}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{background:#f4efe7;font-size:12px;color:var(--ink-2);position:sticky;top:47px;z-index:5}
+tbody tr:hover{background:#fbf8f3}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+select,input[type=text],input[type=date],textarea{font:inherit;font-size:13px;padding:7px 9px;
+  border:1.5px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+label.f{font-size:12px;color:var(--ink-2);display:block;margin-bottom:3px;font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.slider{display:grid;grid-template-columns:78px 1fr 78px;align-items:center;gap:9px;margin:11px 0;font-size:12px;color:var(--ink-2)}
+.slider input{width:100%}
+.slider .r{text-align:right}
+.stat{display:flex;gap:22px;flex-wrap:wrap;margin:0 0 16px}
+.stat div{font-size:12px;color:var(--ink-2)}
+.stat b{display:block;font-size:26px;color:var(--accent);font-weight:700;line-height:1.2}
+.empty{text-align:center;color:var(--ink-2);padding:46px 20px;font-size:14px;background:var(--card);
+  border:1px dashed var(--line);border-radius:12px}
+.note{background:#fdf8ee;border:1px solid #ecdcb8;border-radius:9px;padding:12px 15px;font-size:12.5px;color:#6b5426;margin-bottom:16px}
+.note b{color:#8a6a20}
+ul.ask{margin:6px 0 0;padding-left:19px;font-size:13px;color:var(--ink-2)}
+ul.ask li{margin:3px 0}
+.kura-blk{border-bottom:1px solid var(--line);padding:13px 0}
+.kura-blk:last-child{border:none}
+.kura-blk h4{margin:0 0 2px;font-size:14.5px}
+.kura-blk .meta{font-size:12px;color:var(--ink-2);margin:0}
+svg text{font-size:11px;fill:var(--ink-2)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:99px;margin-right:4px}
+a{color:var(--accent)}
+@media(max-width:640px){ .slider{grid-template-columns:62px 1fr 62px;font-size:11px} main{padding:18px 14px 70px} }
+</style>
+</head>
+<body><div id="site-nav-kokuto" style="position:sticky;top:0;z-index:999;background:#16120d;border-bottom:1px solid rgba(255,255,255,.12);font-family:-apple-system,'Hiragino Sans',sans-serif"><div style="max-width:1000px;margin:0 auto;padding:10px 22px;display:flex;gap:18px;align-items:center;font-size:13px"><a href="index.html" style="color:#e7e2d8;text-decoration:none;opacity:.85">黒糖焼酎KOKUTOO</a><span style="flex:1"></span><a href="tsukurikata.html" style="color:#e7e2d8;text-decoration:none;opacity:.85">つくりかた</a><a href="map.html" style="color:#f2d9a8;text-decoration:none;font-weight:700">ポジショニングマップ</a></div></div>
+<header><div class="wrap">
+  <h1>黒糖焼酎ポジショニングマップ<span class="badge">β / たたき台</span></h1>
+  <p class="sub">奄美群島19蔵・92銘柄の<b>公開情報だけ</b>で作った客観データ層です。味の座標（甘さ・重さ・香り・後味）は
+  まだ空で、<b>飲んだ人が入れて初めて埋まります</b>。</p>
+</div></header>
+
+<nav><div class="wrap" role="tablist">
+  <button role="tab" aria-selected="true" data-t="shindan">診断してみる</button>
+  <button role="tab" aria-selected="false" data-t="map">わたしのマップ</button>
+  <button role="tab" aria-selected="false" data-t="list">銘柄一覧・記録</button>
+  <button role="tab" aria-selected="false" data-t="ask">蔵で聞くこと</button>
+  <button role="tab" aria-selected="false" data-t="about">このデータについて</button>
+</div></nav>
+
+<main class="wrap">
+
+<section id="shindan">
+  <h2>4つの質問で、今日の1本を探す</h2>
+  <p class="lead">公開されている製法データ（度数・蒸留方法・麹・貯蔵）だけで絞り込みます。味の評価は入っていません。</p>
+  <div id="qs"></div>
+  <div class="row" style="margin:18px 0">
+    <button class="btn" id="go">この条件で探す</button>
+    <button class="btn ghost" id="reset">選び直す</button>
+  </div>
+  <div id="out"></div>
+</section>
+
+<section id="map" hidden>
+  <h2>わたしのマップ</h2>
+  <p class="lead">飲んで記録した銘柄だけが点になります。空のうちは何も表示されません（それが正しい状態です）。</p>
+  <div id="mapout"></div>
+</section>
+
+<section id="list" hidden>
+  <h2>銘柄一覧・飲んだ記録</h2>
+  <p class="lead">気になる銘柄の「記録する」から、飲んだ印象を4つの軸で入れてください。ブラウザに保存され、JSONで書き出せます。</p>
+  <div class="card">
+    <div class="grid">
+      <div><label class="f">島</label><select id="f-isl"></select></div>
+      <div><label class="f">麹</label><select id="f-koji"></select></div>
+      <div><label class="f">蒸留</label><select id="f-dist"></select></div>
+      <div><label class="f">度数</label><select id="f-abv"></select></div>
+      <div><label class="f">銘柄・蔵を検索</label><input type="text" id="f-q" placeholder="例：龍宮、弥生"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn ghost" id="exp">記録をJSONで書き出す</button>
+      <button class="btn ghost" id="imp">JSONを読み込む</button>
+      <input type="file" id="impf" accept="application/json" hidden>
+      <span id="cnt" style="font-size:12px;color:var(--ink-2)"></span>
+    </div>
+  </div>
+  <div id="listout"></div>
+</section>
+
+<section id="ask" hidden>
+  <h2>11月の蔵巡りで聞くこと</h2>
+  <p class="lead">公開情報で<b>埋まらなかった項目</b>を蔵ごとにまとめました。飲めば分かることではなく、<b>聞かないと分からないこと</b>のリストです。</p>
+  <div id="askout"></div>
+</section>
+
+<section id="about" hidden>
+  <h2>このデータについて</h2>
+  <div id="aboutout"></div>
+</section>
+
+</main>
+
+<script>
+const DATA = {"meta":{"purpose":"黒糖焼酎ポジショニングマップ 客観データ層（公開情報のみ）","collected":"2026-09-08","caution":"主観的な味の座標（甘さ・重さ・香り・後味）は未収集。飲んだ人が入力して埋める設計。","kura_count":19,"brand_count_raw":100,"brand_count_dedup":96},"kura":[{"name":"奄美大島酒造株式会社","island":"奄美大島","city":"鹿児島県大島郡龍郷町","website":"http://www.jougo.co.jp/","founded":"1970年（昭和45年）創業、1982年に現在地（龍郷町浦）へ移転","description":"2007年より全ての仕込みに奄美大島産の黒糖を使用。龍郷町内の湧水「じょうごの川」の天然地下水を仕込み水に使用し、モンドセレクションを複数年連続受賞している。","source":"https://www.honkakushochu.or.jp/kuramoto/595/","note":"公式サイトはSSL証明書のドメイン不一致により調査時点でアクセス不能。蔵情報は業界団体、銘柄情報は複数の酒販店ページ（2サイト以上で一致確認）から収集しており公式一次情報での直接確認ではない","joint_bottler":null},{"name":"株式会社奄美大島開運酒造","island":"奄美大島","city":"鹿児島県大島郡宇検村湯湾（本社工場）／奄美市名瀬矢之脇町（営業本部）","website":"https://lento.co.jp/","founded":"平成8年4月（1996年・戸田酒造より製造免許譲渡）／平成10年2月（1998年・株式会社設立）","description":"宇検村・湯湾岳の水にこだわり、代表銘柄「れんと」をはじめとする黒糖焼酎の製造販売を行う蔵。ISO22000・FSSC22000の国際認証を取得。","source":"https://lento.co.jp/company","note":"奄美大島酒造（じょうご蔵）とは別法人であることを確認済み","joint_bottler":null},{"name":"富田酒造場","island":"奄美大島","city":"鹿児島県奄美市名瀬入舟町7番8号","website":"https://www.kokuto-ryugu.co.jp/","founded":"1951年（昭和26年）11月1日","description":"創業以来、一次・二次仕込みとも大甕（一部は40年以上使用の甕壺）で行う「全量甕仕込み」を貫く蔵で、奄美黒糖焼酎蔵の中でも最小規模（年間出荷量約400石）とされる。黒麹仕込みを伝統的な柱としつつ白麹仕込みの商品も展開。","source":"https://www.kokuto-ryugu.co.jp/tomitashuzojo/","note":"麹の種類は銘柄によって異なり「黒糖焼酎＝黒麹」と一括りにできない蔵。公式商品ページの記載が薄いため酒販店ページで補完した項目がある","joint_bottler":null},{"name":"西平酒造","island":"奄美大島","city":"鹿児島県奄美市名瀬小俣町","website":"https://www.nishihira-shuzo.com/","founded":"1927年（昭和2年）","description":"「音楽をつくるように醸し、奏でるように発信する」という理念のもと、貯蔵樽に音楽を聴かせて熟成させる「ソニック・エイジング」など独自の取り組みを行う。2021年に4代目・西平せれなが代表兼杜氏に就任。","source":"https://www.nishihira-shuzo.com/","note":"「西平本家」（同じ奄美市名瀬・古田町、大正14年創業、代表銘柄「氣」「天孫岳」）とは別法人。1946年の名瀬移転時に西平本家と西平酒造に分かれたとされる","joint_bottler":null},{"name":"西平本家","island":"奄美大島","city":"鹿児島県奄美市名瀬古田町","website":"https://kokutou-shochu.com/","founded":"大正14年（1925年）","description":"初代・西平守常氏が喜界島で泡盛蔵として創業し、昭和2年に現在の奄美市名瀬へ移転して以来同じ地で黒糖焼酎を造り続ける老舗蔵。伝統の半麹三段製法を基本とし、独自の可変式三方弁蒸留器を用いて全工程を手作業で行う。","source":"https://kokutou-shochu.com/history","note":"「西平酒造」（同じ奄美市名瀬・小俣町、代表銘柄「加那」）とは別法人","joint_bottler":null},{"name":"町田酒造","island":"奄美大島","city":"鹿児島県大島郡龍郷町","website":"https://satoake.jp/","founded":"1991年（平成3年）","description":"平成3年に現在の本社工場（龍郷町大勝）を新設して以来、酒質向上と品質にこだわった酒造りを継続し、ISO22000認証を取得している。","source":"https://satoake.jp/company/","note":"創業年は情報源により差異あり（公式:1991年 vs 前身・石原酒造の法人化1983年）。公式優先で1991年を採用","joint_bottler":null},{"name":"有限会社山田酒造","island":"奄美大島","city":"鹿児島県大島郡龍郷町","website":null,"founded":"昭和32年（1957年）創業、昭和62年法人化","description":"奄美大島北部・龍郷町大勝に蔵を構え、長雲山系の伏流水を仕込み水・割水に使用する黒糖焼酎専門の蔵元。国産黒糖のみを原料とし、平成21年からはサトウキビと米の自家栽培にも取り組み「100％奄美大島産」の黒糖焼酎造りも行っている。","source":"https://www.honkakushochu.or.jp/kuramoto/729/","note":"公式サイトは検索した範囲では見つからず（家族経営の小規模蔵で自社サイトを持たない可能性）。銘柄情報は酒販店・蔵探訪記事から収集しており公式一次情報ではない","joint_bottler":null},{"name":"合資会社弥生焼酎醸造所","island":"奄美大島","city":"鹿児島県奄美市名瀬小浜町15-3","website":"https://www.kokuto-shouchu.co.jp/","founded":"大正11年（1922年）3月","description":"奄美大島で最も古い歴史ある蔵で、かつて「唐浜」と呼ばれた地に立地し、戦後に黒糖焼酎製造へ転換した。「味が濃くて香りが強いお酒を造りたい」という方針を持つ。","source":"https://www.kokuchu.com/ka_yayoi.html","note":"公式オンラインストアの個別商品ページは文字コードの問題で読み取れないものが多く、麹種・貯蔵方法の一部はふるさと納税ポータル掲載の返礼品仕様表を補助的な出典として使用","joint_bottler":null},{"name":"朝日酒造株式会社","island":"喜界島","city":"鹿児島県大島郡喜界町湾41-1","website":"https://www.kokuto-asahi.co.jp/","founded":"1916年（大正5年）","description":"奄美諸島の中で最も歴史のある黒糖焼酎蔵。1999年から自社農園でサトウキビの有機栽培を開始し、有機JAS認証（2015年）・JGAP認証（2016年）を取得している。","source":"https://www.kokuto-asahi.co.jp/pages/about","note":null,"joint_bottler":null},{"name":"喜界島酒造株式会社","island":"喜界島","city":"鹿児島県大島郡喜界町赤連2966-12","website":"https://www.kurochu.jp/","founded":"1916年（大正5年）","description":"黒糖焼酎業界最古の蔵とされる。珊瑚礁の地下から湧く天然硬水を使用し、常圧蒸留にこだわり、原酒を最低1年以上貯蔵熟成させてから商品化する。","source":"https://www.honkakushochu.or.jp/kuramoto/244/","note":null,"joint_bottler":null},{"name":"奄美大島にしかわ酒造株式会社","island":"徳之島","city":"鹿児島県大島郡徳之島町白井474-565","website":"https://syuzouonline.shop-pro.jp/","founded":"1990年（有限会社芳倉酒造を買収し社名変更。2006年5月株式会社化）","description":"純黒砂糖を主原料に、徳之島の天然湧水（長寿の水）で仕込む黒糖焼酎・リキュールの製造販売。社名に「奄美大島」とあるが所在地・製造は徳之島で、奄美大島の西平酒造・西平本家とは無関係の別会社。","source":"https://syuzouonline.shop-pro.jp/?mode=f6","note":null,"joint_bottler":null},{"name":"天川酒造株式会社","island":"徳之島","city":"鹿児島県大島郡徳之島町花徳789","website":null,"founded":"1947年（昭和22年）※法人化は1955年（昭和30年）","description":"初代・乾純之助が台湾・沖縄八重山での製糖業経験を経て戦後徳之島に創業。蔵名は徳之島の星空（天の川）に由来。白麹・タイ米を使い黒糖を2回に分けて投入する「スッポン仕込み」、井之川岳水系の硬水を仕込み水に使用。単独の自社公式サイトは確認できず、共同瓶詰会社「奄美酒類株式会社」の共同銘柄として流通。","source":"https://amamishurui.co.jp/kuramoto.php","note":null,"joint_bottler":"奄美酒類株式会社"},{"name":"高岡醸造株式会社","island":"徳之島","city":"鹿児島県大島郡徳之島町亀津982-1","website":"https://takaokazyozo.official.ec","founded":"1949年（昭和24年）※出典間で1947年説と食い違いあり","description":"味噌・漬物・焼酎の醸造からスタートし、2代目がパパイヤから自社培養した天然酵母（高岡菌）で1979年に国産初のゴールドラム「ルリカケス」を発売。主力商品は黒糖焼酎ではなく国産ラム酒が中心（麹不使用）で、自社ブランドの黒糖焼酎（米麹使用）は「世萬代」1銘柄のみ。","source":"https://www.honkakushochu.or.jp/kuramoto/245/","note":null,"joint_bottler":null},{"name":"中村酒造株式会社","island":"徳之島","city":"鹿児島県大島郡天城町","website":null,"founded":"1947年（昭和22年）","description":"初代・中村資盛が沖縄から杜氏を招き泡盛の酒造場として創業。現在は共同瓶詰会社「奄美酒類株式会社」を構成する蔵の一つとして黒糖焼酎の原酒造りを行う。単独の自社公式サイトは確認できず。","source":"https://amamishurui.co.jp/kuramoto.php","note":null,"joint_bottler":"奄美酒類株式会社"},{"name":"有限会社松永酒造場","island":"徳之島","city":"鹿児島県大島郡伊仙町阿三1283-1","website":"https://marushika-waido.com/","founded":"1952年（昭和27年）","description":"徳之島南部・伊仙町の港町「鹿浦」で創業。初代・タケ子、二代目・玲子、三代目・晶子と女性杜氏が代々継承。1965年の共同瓶詰会社設立を機に自社銘柄「まる鹿」の販売を中止していたが、2020年12月に三代目が約50年ぶりに「マルシカ」として復活させた。","source":"https://www.honkakushochu.or.jp/kuramoto/602/","note":null,"joint_bottler":null},{"name":"沖永良部酒造株式会社","island":"沖永良部島","city":"鹿児島県大島郡和泊町玉城字花トリ1999-1","website":"https://www.inenotsuyu.com/","founded":"昭和44年(1969年)7月","description":"島内4蔵元で構成される酒類共同瓶詰販売会社として1969年7月に設立。試行錯誤を重ねて多種多様にブレンドした奄美黒糖焼酎を製造している（公式サイトの会社概要記載に基づく。個々の蒸留所としての創業年ではなく、共同瓶詰販売会社としての設立年である点に注意）。","source":"https://www.inenotsuyu.com/okinoerabu-shuzo","note":null,"joint_bottler":null},{"name":"新納酒造株式会社","island":"沖永良部島","city":"鹿児島県大島郡知名町知名313-1（工場：知名町田皆2360）","website":null,"founded":"大正9年(1920年)","description":"三代目・新納政明氏が沖縄式泡盛の製造販売を始めた大正9年(1920年)創業。1945年の空襲で酒造場を全焼、1977年の沖永良部台風被害を経て工場を移転再建。「仕継ぎ技法」による貯蔵・熟成に力を入れる。","source":"https://www.honkakushochu.or.jp/kuramoto/252/","note":null,"joint_bottler":null},{"name":"原田酒造株式会社","island":"沖永良部島","city":"鹿児島県大島郡知名町知名379-2","website":"https://www.haradasyuzo.com/","founded":"昭和22年(1947年)","description":"1947年創業。1972年に事業を引き継いだ2代目が「小さな蔵が生き残るには他にない個性が必要」との考えから長期貯蔵銘柄の開発に着手。樽による風味付けと5年間の貯蔵を特徴とする。","source":"https://www.haradasyuzo.com/company","note":null,"joint_bottler":null},{"name":"有村酒造株式会社","island":"与論島","city":"鹿児島県大島郡与論町茶花226-1","website":"https://shimayusen.jp/","founded":null,"description":"奄美群島最南端の与論島で唯一、黒糖焼酎を製造する蔵元。主力銘柄「島有泉」は与論島の伝統的なおもてなし文化「与論献奉」に欠かせない黒糖焼酎として位置づけられている。現在の杜氏は五代目・福地成夫氏。","source":"https://shimayusen.jp/about.html","note":null,"joint_bottler":null}],"brands":[{"id":"奄美大島酒造株式会社::じょうご","kura":"奄美大島酒造株式会社","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"じょうご","kana":"じょうご","abv":[25],"koji":"白麹","distillation":"減圧","aging":null,"note":"主力・定番銘柄。原材料は黒糖（奄美大島産）・米こうじ（タイ産米）","source":"https://www.kagoshima-shochu.com/c/sake/category/kokutou/gd640","shared_kura":["奄美大島酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"奄美大島酒造株式会社::高倉","kura":"奄美大島酒造株式会社","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"高倉","kana":"たかくら","abv":[30],"koji":"白麹","distillation":"常圧","aging":"ステンレスタンクで3年以上貯蔵後、樫樽で7ヶ月熟成し琥珀色に仕上げる","note":"モンドセレクション最高金賞を複数年受賞","source":"https://shochuishinkan.jp/products/4538216301858","shared_kura":["奄美大島酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"奄美大島酒造株式会社::浜千鳥乃詩","kura":"奄美大島酒造株式会社","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"浜千鳥乃詩","kana":"はまちどりのうた","abv":[30],"koji":"白麹","distillation":"常圧","aging":"2種類の原酒をブレンドし2年以上貯蔵","note":"糖分ゼロ・無添加を謳う","source":"https://isobe-sake.com/products/hamachidorino-uta","shared_kura":["奄美大島酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"奄美大島酒造株式会社::浜千鳥乃詩 原酒","kura":"奄美大島酒造株式会社","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"浜千鳥乃詩 原酒","kana":"はまちどりのうた げんしゅ","abv":[38],"koji":"白麹","distillation":"常圧","aging":"7年以上長期熟成させた古酒","note":"原材料は奄美大島産黒糖100%","source":"https://shochuishinkan.jp/products/4538216387203","shared_kura":["奄美大島酒造株式会社"],"joint":false,"abv_max":38,"abv_min":38,"has_aging":true,"koji_simple":"白"},{"id":"奄美大島酒造株式会社::浜千鳥乃詩 GOLD","kura":"奄美大島酒造株式会社","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"浜千鳥乃詩 GOLD","kana":"はまちどりのうた ごーるど","abv":[40],"koji":"白麹","distillation":"常圧","aging":"2年以上貯蔵後に樫樽熟成。別途3年ステンレス熟成の高グレード原酒を樫樽熟成しブレンド","note":"定番品か限定品かの位置づけは未確認","source":"https://shochuishinkan.jp/products/4538216408007","shared_kura":["奄美大島酒造株式会社"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":"白"},{"id":"株式会社奄美大島開運酒造::れんと","kura":"株式会社奄美大島開運酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"れんと","kana":"れんと","abv":[16,25],"koji":null,"distillation":"減圧","aging":"音響熟成：貯蔵タンクに音響振動（クラシック音楽）を約3ヶ月加えて熟成させる独自製法","note":"麹は原材料表記に「米こうじ（タイ産米）」とあるのみで黒/白/黄の別は記載なし","source":"https://www.kaiun-shop.co.jp/view/item/000000000017","shared_kura":["株式会社奄美大島開運酒造"],"joint":false,"abv_max":25,"abv_min":16,"has_aging":true,"koji_simple":null},{"id":"株式会社奄美大島開運酒造::紅さんご","kura":"株式会社奄美大島開運酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"紅さんご","kana":"べにさんご","abv":[40],"koji":"白麹","distillation":"常圧","aging":"樫樽（ホワイトオーク）で長期熟成（年数の記載なし）","note":null,"source":"https://www.kaiun-shop.co.jp/view/item/000000000028","shared_kura":["株式会社奄美大島開運酒造"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":"白"},{"id":"株式会社奄美大島開運酒造::あまみ六調","kura":"株式会社奄美大島開運酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"あまみ六調","kana":"あまみろくちょう","abv":[20,30],"koji":"白麹","distillation":"常圧","aging":"かめ仕込みによる長期熟成酒（年数の記載なし）","note":"白麹・常圧は黒ラベル(30度)で確認。白ラベル(20度)は個別ページ未確認のため参考掲載","source":"https://www.kaiun-shop.co.jp/view/item/000000000035","shared_kura":["株式会社奄美大島開運酒造"],"joint":false,"abv_max":30,"abv_min":20,"has_aging":true,"koji_simple":"白"},{"id":"株式会社奄美大島開運酒造::アマミラビット","kura":"株式会社奄美大島開運酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"アマミラビット","kana":"あまみらびっと","abv":[25,30],"koji":null,"distillation":null,"aging":"軽やかな原酒と樽酒をブレンド（詳細記載なし）","note":"原材料は「米こうじ（タイ産）」のみで麹の色種別・蒸留方法とも記載なし","source":"https://www.kaiun-shop.co.jp/view/item/000000000040","shared_kura":["株式会社奄美大島開運酒造"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":true,"koji_simple":null},{"id":"株式会社奄美大島開運酒造::うかれけんむん","kura":"株式会社奄美大島開運酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"うかれけんむん","kana":"うかれけんむん","abv":[30],"koji":"黒麹","distillation":"常圧","aging":"長期貯蔵・3年以上熟成","note":null,"source":"https://www.kaiun-shop.co.jp/view/item/000000000036","shared_kura":["株式会社奄美大島開運酒造"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"黒"},{"id":"富田酒造場::龍宮30度","kura":"富田酒造場","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"龍宮30度","kana":"りゅうぐう","abv":[30],"koji":"黒麹","distillation":null,"aging":"一次・二次仕込みとも40年以上使い込んだ甕壺（蒸留後の貯蔵年数の記載なし）","note":"麹種は酒販店ページ（ひご屋）の記述で確認","source":"https://www.kokuto-ryugu.co.jp/product/ ／ https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/tom/tom51","shared_kura":["富田酒造場"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"黒"},{"id":"富田酒造場::龍宮25度","kura":"富田酒造場","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"龍宮25度","kana":"りゅうぐう","abv":[25],"koji":null,"distillation":null,"aging":null,"note":"麹種・蒸留・貯蔵の明記があるページが見つからず","source":"https://www.kokuto-ryugu.co.jp/product/","shared_kura":["富田酒造場"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":null},{"id":"富田酒造場::かめ仕込","kura":"富田酒造場","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"かめ仕込","kana":"かめしこみ","abv":[40],"koji":"黒麹","distillation":null,"aging":"一次・二次仕込みとも甕壺（貯蔵年数の記載なし）","note":"酒販店では「龍宮かめ仕込み40度」として販売","source":"https://www.kokuto-ryugu.co.jp/product/ ／ https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/tom/tom53","shared_kura":["富田酒造場"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":"黒"},{"id":"富田酒造場::まーらん舟33度","kura":"富田酒造場","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"まーらん舟33度","kana":"まーらんぶね","abv":[33],"koji":"白麹","distillation":null,"aging":null,"note":"黒糖は徳之島産。直営ショップでは商品名が「まーらん舟33度白麹」","source":"https://tomitashuzojo.kurakara.jp/","shared_kura":["富田酒造場"],"joint":false,"abv_max":33,"abv_min":33,"has_aging":false,"koji_simple":"白"},{"id":"富田酒造場::まーらん舟25度","kura":"富田酒造場","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"まーらん舟25度","kana":"まーらんぶね","abv":[25],"koji":"黒麹","distillation":null,"aging":"一次・二次仕込みとも甕壺（貯蔵年数の記載なし）","note":"酒販店ページに「米麹（黒）」と明記","source":"https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/tom/tom54","shared_kura":["富田酒造場"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黒"},{"id":"富田酒造場::らんかん","kura":"富田酒造場","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"らんかん","kana":null,"abv":[42,43,44],"koji":"黒麹","distillation":"常圧","aging":"タンク貯蔵2年（1年目ステンレス、2年目専用タンク）","note":"度数は情報源により42/43/44度と揺れがあり製造年による変動として列挙","source":"https://www.kokuto-ryugu.co.jp/product/ ／ https://shochu-next.com/article/6307","shared_kura":["富田酒造場"],"joint":false,"abv_max":44,"abv_min":42,"has_aging":true,"koji_simple":"黒"},{"id":"西平酒造::加那（KANA）","kura":"西平酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"加那（KANA）","kana":"かな","abv":[30,40],"koji":"白麹","distillation":"常圧","aging":"タンクで1年貯蔵後、樫樽で1年以上貯蔵","note":"定番の主力銘柄。30度が現行主力表記だが40度も流通しており両方併記","source":"https://shochuishinkan.jp/products/4934499307202","shared_kura":["西平酒造"],"joint":false,"abv_max":40,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"西平酒造::珊瑚（SANGO）","kura":"西平酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"珊瑚（SANGO）","kana":"さんご","abv":[30],"koji":"白麹","distillation":"常圧","aging":"ホーロータンクで1年間貯蔵","note":"2016年春季全国酒類コンクール黒糖焼酎部門第1位受賞（酒販店記載・未裏取り）","source":"https://www.nittos.co.jp/s-nishihira-sango.htm","shared_kura":["西平酒造"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"西平酒造::KANA BLACK","kura":"西平酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"KANA BLACK","kana":"かなぶらっく","abv":[40],"koji":null,"distillation":null,"aging":"選りすぐった樫樽のみを使用（年数の明記なし）","note":"麹の種類・蒸留方法は個別ページに明記なし","source":"https://www.nishihira-shuzo.com/kanablack","shared_kura":["西平酒造"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":null},{"id":"西平酒造::ISLAND","kura":"西平酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"ISLAND","kana":"あいらんど","abv":[40],"koji":null,"distillation":null,"aging":null,"note":"麹・蒸留・貯蔵とも明記なし。カクテルベース向けとして40度に設定と公式に記載","source":"https://www.nishihira-shuzo.com/island","shared_kura":["西平酒造"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":false,"koji_simple":null},{"id":"西平酒造::巴モワ","kura":"西平酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"巴モワ","kana":"ともえもわ","abv":[40],"koji":"白麹・黄麹","distillation":null,"aging":"2年間熟成","note":"公式に「昔ながらの白麹と、新時代を思わせる黄麹のハーモニー」と明記。度数は販売店表記より確認","source":"https://www.nishihira-shuzo.com/tomoetmoi","shared_kura":["西平酒造"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":"混合"},{"id":"西平本家::せえごれ","kura":"西平本家","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"せえごれ","kana":null,"abv":[25,30],"koji":"白麹","distillation":null,"aging":null,"note":"30度は奄美限定商品。蒸留方法・貯蔵期間の記載なし","source":"https://kokutou-shochu.com/products/seegore","shared_kura":["西平本家"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"西平本家::氣","kura":"西平本家","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"氣","kana":"き","abv":[25],"koji":"白麹（白麹仕込み）／黒麹（黒麹仕込み）","distillation":null,"aging":null,"note":"白麹仕込み・黒麹仕込みの2ラインが存在。「氣 豊楽」は5年熟成と明記、通常版は熟成年数の記載なし","source":"https://kokutou-shochu.com/products/ki","shared_kura":["西平本家"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"混合"},{"id":"西平本家::天孫岳（アマンディ）","kura":"西平本家","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"天孫岳（アマンディ）","kana":"あまんでぃ","abv":[25,30,40],"koji":"白麹","distillation":null,"aging":"オーク樽貯蔵。25度版は3年熟成、40度版は長期貯蔵（年数記載なし）","note":"蒸留方法は記載なし","source":"https://kokutou-shochu.com/products/amandi","shared_kura":["西平本家"],"joint":false,"abv_max":40,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"西平本家::わのらむ","kura":"西平本家","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"わのらむ","kana":null,"abv":[25],"koji":"白麹・黒麹（ブレンド）","distillation":null,"aging":"白麹仕込みのオーク樽貯蔵酒と黒麹仕込み酒をブレンド（木樽貯蔵）","note":"蒸留方法は記載なし","source":"https://kokutou-shochu.com/products/wanoramu","shared_kura":["西平本家"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"混合"},{"id":"西平本家::八千代","kura":"西平本家","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"八千代","kana":"やちよ","abv":[30],"koji":"黒麹","distillation":"常圧","aging":null,"note":"貯蔵・熟成方法の記載なし","source":"https://kokutou-shochu.com/products/yachiyo","shared_kura":["西平本家"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":false,"koji_simple":"黒"},{"id":"町田酒造::里の曙","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"里の曙","kana":"さとのあけぼの","abv":[25],"koji":"白麹","distillation":"減圧","aging":"長期貯蔵（3年以上）／ステンレスタンク","note":"蔵の看板・フラッグシップ銘柄","source":"https://satoake.jp/lineup/satoake/","shared_kura":["町田酒造"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"町田酒造::里の曙 黒麹仕込","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"里の曙 黒麹仕込","kana":null,"abv":[25],"koji":"黒麹","distillation":"減圧","aging":"1年以上／ステンレスタンク","note":null,"source":"https://satoake.jp/lineup/satoake_black/","shared_kura":["町田酒造"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黒"},{"id":"町田酒造::里の曙 ゴールド","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"里の曙 ゴールド","kana":null,"abv":[43],"koji":"白麹","distillation":"併用","aging":"3年以上／ステンレスタンク・樫樽","note":"減圧蒸留・常圧蒸留の原酒をブレンド","source":"https://satoake.jp/lineup/satoake_gold/","shared_kura":["町田酒造"],"joint":false,"abv_max":43,"abv_min":43,"has_aging":true,"koji_simple":"白"},{"id":"町田酒造::里の曙 瑞祥","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"里の曙 瑞祥","kana":"さとのあけぼの ずいしょう","abv":[25],"koji":"白麹","distillation":"常圧","aging":"1年以上／ステンレスタンク","note":null,"source":"https://satoake.jp/lineup/satoake_zuisho/","shared_kura":["町田酒造"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"町田酒造::里の曙 原酒","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"里の曙 原酒","kana":null,"abv":[43],"koji":"白麹","distillation":"減圧","aging":"3年以上貯蔵／ステンレスタンク","note":null,"source":"https://satoake.jp/lineup/satonoakebono-genshu/","shared_kura":["町田酒造"],"joint":false,"abv_max":43,"abv_min":43,"has_aging":true,"koji_simple":"白"},{"id":"町田酒造::一村","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"一村","kana":"いっそん","abv":[25],"koji":"白麹","distillation":"減圧","aging":"3年以上／ステンレスタンク・樫樽","note":"画家・田中一村の名画をラベルに使用。奄美群島日本復帰60周年記念で発売","source":"https://satoake.jp/lineup/isson/","shared_kura":["町田酒造"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"町田酒造::奄美の杜","kura":"町田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"奄美の杜","kana":"あまみのもり","abv":[25],"koji":"白麹","distillation":"減圧","aging":"3年以上／ステンレスタンク","note":null,"source":"https://satoake.jp/lineup/amaminomori/","shared_kura":["町田酒造"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"有限会社山田酒造::あまみ長雲","kura":"有限会社山田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"あまみ長雲","kana":"あまみながくも","abv":[25,30,40],"koji":"白麹","distillation":"常圧","aging":"2年以上（タンク貯蔵）","note":"蔵の代表・基本銘柄","source":"https://field-to-table.jp/products/amami-nagagumo","shared_kura":["有限会社山田酒造"],"joint":false,"abv_max":40,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"有限会社山田酒造::長雲 一番橋","kura":"有限会社山田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"長雲 一番橋","kana":"ながくも いちばんばし","abv":[30],"koji":"白麹","distillation":"常圧","aging":"一次仕込みは甕壺、蒸留後は貯蔵タンクで2年以上熟成","note":"奄美市笠利町産の黒糖を使用。黒糖を加熱せず常温で10〜11時間かけて溶かす製法が特徴","source":"https://isobe-sake.com/products/amami-nagakumo_ichiban-bashi","shared_kura":["有限会社山田酒造"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"有限会社山田酒造::山田川","kura":"有限会社山田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"山田川","kana":"やまだごう","abv":[30],"koji":"白麹","distillation":"常圧","aging":"一次仕込みは甕壺、蒸留後は貯蔵タンクで2年以上熟成","note":"自社栽培（無農薬）サトウキビ・米を使用した「奄美大島産原料100％」","source":"https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/ymd/ymd54","shared_kura":["有限会社山田酒造"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"有限会社山田酒造::きょらじま","kura":"有限会社山田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"きょらじま","kana":null,"abv":[15],"koji":"黒麹","distillation":"常圧","aging":"瓶貯蔵","note":"低アルコールタイプ。麹種は情報源間で「黒こうじ」「白麹」の揺れがあり要再確認","source":"https://www.hoshikuma.jp/?pid=132038005","shared_kura":["有限会社山田酒造"],"joint":false,"abv_max":15,"abv_min":15,"has_aging":true,"koji_simple":"黒"},{"id":"有限会社山田酒造::あまみ長雲 長期熟成貯蔵古酒","kura":"有限会社山田酒造","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"あまみ長雲 長期熟成貯蔵古酒","kana":null,"abv":[30],"koji":null,"distillation":"常圧","aging":"5年間熟成","note":"麹の種類の明記は確認できず","source":"https://imadeya.co.jp/products/8175623798949","shared_kura":["有限会社山田酒造"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":null},{"id":"合資会社弥生焼酎醸造所::弥生","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"弥生","kana":"やよい","abv":[25,30],"koji":"白麹","distillation":"常圧","aging":"タンク貯蔵","note":"同蔵の看板銘柄","source":"https://furunavi.jp/product_detail.aspx?pid=1003405","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"合資会社弥生焼酎醸造所::まんこい","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"まんこい","kana":null,"abv":[25,30],"koji":"白麹","distillation":"常圧","aging":"樽貯蔵（弥生を樽で寝かせた熟成酒。3ヶ年貯蔵との記載もあり）","note":"レモンサワーとの相性で知られる熟成酒","source":"https://furunavi.jp/product_detail.aspx?pid=1003405","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"合資会社弥生焼酎醸造所::太古の黒うさぎ","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"太古の黒うさぎ","kana":null,"abv":[25],"koji":null,"distillation":null,"aging":"樫樽で長期貯蔵（20数年前から貯蔵を継続している樽を用いた琥珀色の長期熟成酒）","note":"麹の種類・蒸留方法はいずれの情報源にも明記なし","source":"https://www.hyotan.co.jp/cnt/shochu/kurousa.html","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":null},{"id":"合資会社弥生焼酎醸造所::碧い海","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"碧い海","kana":"あおいうみ","abv":[25],"koji":"黄麹","distillation":null,"aging":"甕貯蔵","note":"公式に「黄麹を使い、薫りが華やかに立つ黒糖焼酎。甕で貯蔵することによってまろやかさと上品な味わい」と記載","source":"https://www.kokuto-shouchu.co.jp/item/","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黄"},{"id":"合資会社弥生焼酎醸造所::瓶仕込","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"瓶仕込","kana":"びんじこみ","abv":[30],"koji":"黄麹","distillation":null,"aging":"甕貯蔵","note":null,"source":"https://furunavi.jp/product_detail.aspx?pid=1003406","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"黄"},{"id":"合資会社弥生焼酎醸造所::弥生 荒ろか","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"弥生 荒ろか","kana":"やよい あろか","abv":[25],"koji":"白麹","distillation":null,"aging":"タンク貯蔵","note":"荒濾過仕上げが特徴として明記","source":"https://furunavi.jp/product_detail.aspx?pid=1003405","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"合資会社弥生焼酎醸造所::紬の里","kura":"合資会社弥生焼酎醸造所","island":"奄美大島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"紬の里","kana":"つむぎのさと","abv":[25],"koji":"白麹","distillation":null,"aging":"タンク／樽ブレンド","note":"弥生とまんこいをブレンドした商品","source":"https://furunavi.jp/product_detail.aspx?pid=1003405","shared_kura":["合資会社弥生焼酎醸造所"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"朝日酒造株式会社::朝日","kura":"朝日酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"朝日","kana":"あさひ","abv":[25,30],"koji":"白麹","distillation":null,"aging":null,"note":"蔵の代表銘柄。原材料表記は「米麹【白麹/タイ産米】」。蒸留方法・貯蔵の記載なし","source":"https://www.kokuto-asahi.co.jp/products/","shared_kura":["朝日酒造株式会社"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"朝日酒造株式会社::たかたろう","kura":"朝日酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"たかたろう","kana":null,"abv":[25],"koji":"白麹","distillation":"減圧","aging":null,"note":"「朝日酒造唯一の減圧蒸留した黒糖焼酎」と明記","source":"https://www.kokuto-asahi.co.jp/products/","shared_kura":["朝日酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"朝日酒造株式会社::壱乃醸朝日","kura":"朝日酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"壱乃醸朝日","kana":"いちのじょうあさひ","abv":[25],"koji":"黒麹","distillation":null,"aging":null,"note":"黒糖の仕込み量が最も多い銘柄と公式説明。原材料表記「米麹（黒麹/タイ産米）」","source":"https://www.kokuto-asahi.co.jp/products/","shared_kura":["朝日酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"黒"},{"id":"朝日酒造株式会社::飛乃流朝日","kura":"朝日酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"飛乃流朝日","kana":"ひのりゅうあさひ","abv":[25],"koji":"白麹","distillation":null,"aging":null,"note":"本銘柄のみ国産米（他銘柄はタイ産米）","source":"https://www.kokuto-asahi.co.jp/products/","shared_kura":["朝日酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"朝日酒造株式会社::黒潮","kura":"朝日酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"黒潮","kana":null,"abv":[35],"koji":"白麹","distillation":null,"aging":"「シツギ（仕次ぎ）」で熟成（年数記載なし）","note":"原材料表記「米麹（白麹/タイ産米）」","source":"https://www.kokuto-asahi.co.jp/products/","shared_kura":["朝日酒造株式会社"],"joint":false,"abv_max":35,"abv_min":35,"has_aging":true,"koji_simple":"白"},{"id":"喜界島酒造株式会社::喜界島","kura":"喜界島酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"喜界島","kana":"きかいじま","abv":[25,30],"koji":"白麹","distillation":"常圧","aging":"1年以上貯蔵熟成","note":"30度の原材料欄に「米麹（白）」と明記。25度は色の明記なし","source":"https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/kkj/kkj52","shared_kura":["喜界島酒造株式会社"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"喜界島酒造株式会社::しまっちゅ伝蔵","kura":"喜界島酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"しまっちゅ伝蔵","kana":"しまっちゅでんぞう","abv":[25,30],"koji":null,"distillation":"常圧","aging":"貯蔵熟成（年数記載なし）","note":"麹の色は情報源間で記述が矛盾するため不明扱い","source":"https://www.kerajiya.com/shopdetail/003001000018/","shared_kura":["喜界島酒造株式会社"],"joint":false,"abv_max":30,"abv_min":25,"has_aging":true,"koji_simple":null},{"id":"喜界島酒造株式会社::三年寝太蔵","kura":"喜界島酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"三年寝太蔵","kana":"さんねんねたぞう","abv":[30],"koji":null,"distillation":"常圧","aging":"3年熟成に5〜10年の古酒をブレンド","note":"麹の色は商品ページに記載なし","source":"https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/kkj/kkj55","shared_kura":["喜界島酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":null},{"id":"喜界島酒造株式会社::キャプテンキッド","kura":"喜界島酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"キャプテンキッド","kana":null,"abv":[43],"koji":null,"distillation":"常圧","aging":"43度原酒を無加水で7年間貯蔵、樫樽で熟成","note":"麹の色は商品ページに記載なし","source":"https://www.higoya.co.jp/c/kuramoto/kagoshima/amamitaneyaku/kkj/kkj56","shared_kura":["喜界島酒造株式会社"],"joint":false,"abv_max":43,"abv_min":43,"has_aging":true,"koji_simple":null},{"id":"喜界島酒造株式会社::喜界島 荒濾過 黒糖","kura":"喜界島酒造株式会社","island":"喜界島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"喜界島 荒濾過 黒糖","kana":null,"abv":[25],"koji":"白麹","distillation":"常圧","aging":null,"note":"スペック表に「麹：白麹」「蒸留：常圧蒸留」と明記","source":"https://shochuishinkan.jp/products/4986668250024","shared_kura":["喜界島酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"奄美大島にしかわ酒造株式会社::島のナポレオン","kura":"奄美大島にしかわ酒造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"島のナポレオン","kana":"しまのナポレオン","abv":[25],"koji":"白麹","distillation":"減圧","aging":null,"note":"同社の主力商品","source":"https://syuzouonline.shop-pro.jp/?mode=grp&gid=1676216","shared_kura":["奄美大島にしかわ酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"奄美大島にしかわ酒造株式会社::あじゃ","kura":"奄美大島にしかわ酒造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"あじゃ","kana":null,"abv":[30],"koji":"白麹","distillation":"常圧","aging":null,"note":"「あじゃ黒」とは麹が異なる別商品","source":"https://syuzouonline.shop-pro.jp/?mode=grp&gid=1676216","shared_kura":["奄美大島にしかわ酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":false,"koji_simple":"白"},{"id":"奄美大島にしかわ酒造株式会社::あじゃ黒","kura":"奄美大島にしかわ酒造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"あじゃ黒","kana":null,"abv":[25],"koji":"黒麹","distillation":"常圧","aging":"1200度で焼きしめた甕壺で1年以上熟成","note":"熟成情報は酒販店記載（公式カテゴリページには記載なし）","source":"https://syuzouonline.shop-pro.jp/?mode=grp&gid=1676217","shared_kura":["奄美大島にしかわ酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黒"},{"id":"奄美大島にしかわ酒造株式会社::ざわわ","kura":"奄美大島にしかわ酒造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"ざわわ","kana":null,"abv":[25],"koji":"白麹","distillation":"減圧","aging":null,"note":null,"source":"https://syuzouonline.shop-pro.jp/?mode=grp&gid=1676216","shared_kura":["奄美大島にしかわ酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":"白"},{"id":"奄美大島にしかわ酒造株式会社::帝","kura":"奄美大島にしかわ酒造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"帝","kana":"みかど","abv":[35],"koji":"白麹","distillation":"常圧","aging":"5年以上長期熟成原酒を使用","note":"「長期熟成焼酎」カテゴリ商品","source":"https://syuzouonline.shop-pro.jp/?mode=grp&gid=1676216","shared_kura":["奄美大島にしかわ酒造株式会社"],"joint":false,"abv_max":35,"abv_min":35,"has_aging":true,"koji_simple":"白"},{"id":"奄美大島にしかわ酒造株式会社::王紀","kura":"奄美大島にしかわ酒造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"王紀","kana":"おうき","abv":[27],"koji":"白麹","distillation":"常圧","aging":"3年貯蔵古酒","note":"「長期熟成焼酎」カテゴリ商品","source":"https://syuzouonline.shop-pro.jp/?mode=grp&gid=1676216","shared_kura":["奄美大島にしかわ酒造株式会社"],"joint":false,"abv_max":27,"abv_min":27,"has_aging":true,"koji_simple":"白"},{"id":"天川酒造株式会社::奄美","kura":"天川酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"奄美","kana":"あまみ","abv":[30],"koji":"白麹","distillation":"常圧","aging":"1年以上貯蔵（容器の記載なし）","note":"★共同瓶詰銘柄（複数蔵の原酒ブレンド）。中村酒造にも同一銘柄が計上されている","source":"https://amamishurui.co.jp/item.php","shared_kura":["天川酒造株式会社","中村酒造株式会社"],"joint":true,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"天川酒造株式会社::黒奄美","kura":"天川酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"黒奄美","kana":"くろあまみ","abv":[25],"koji":"黒麹","distillation":null,"aging":"3年以上貯蔵","note":"★共同瓶詰銘柄。中村酒造にも同一銘柄が計上されている","source":"https://amamishurui.co.jp/item.php","shared_kura":["天川酒造株式会社","中村酒造株式会社"],"joint":true,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黒"},{"id":"天川酒造株式会社::煌の島","kura":"天川酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"煌の島","kana":"きらめきのしま","abv":[25],"koji":"白麹","distillation":"常圧","aging":"1年以上貯蔵","note":"★共同瓶詰銘柄。天川酒造二代目が商品開発に貢献したとされる","source":"https://www.shochu.net/view/item/000000000611","shared_kura":["天川酒造株式会社","中村酒造株式会社"],"joint":true,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"天川酒造株式会社::奄美の匠","kura":"天川酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"奄美の匠","kana":"あまみのたくみ","abv":[25],"koji":"白麹と黒麹のブレンド","distillation":null,"aging":"1年以上貯蔵","note":"★共同瓶詰銘柄。中村酒造にも同一銘柄が計上されている","source":"https://amamishurui.co.jp/item.php","shared_kura":["天川酒造株式会社","中村酒造株式会社"],"joint":true,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"混合"},{"id":"天川酒造株式会社::奄美長寿の酒","kura":"天川酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"奄美長寿の酒","kana":null,"abv":[30],"koji":null,"distillation":null,"aging":"壷入り、1年以上貯蔵","note":"★共同瓶詰銘柄","source":"https://amamishurui.co.jp/item.php","shared_kura":["天川酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":null},{"id":"天川酒造株式会社::奄美瑠璃色の空","kura":"天川酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"奄美瑠璃色の空","kana":null,"abv":[30],"koji":"黒麹","distillation":null,"aging":"3〜4年以上長期熟成","note":"★共同瓶詰銘柄。黒糖焼酎では珍しい黒麹仕込みと明記","source":"https://amamishurui.co.jp/item.php","shared_kura":["天川酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"黒"},{"id":"高岡醸造株式会社::世萬代","kura":"高岡醸造株式会社","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"世萬代","kana":"ゆまんでぃ","abv":[25],"koji":"黒麹","distillation":"常圧","aging":"甕壺で6年以上熟成させた原酒と黒麹原酒をブレンド","note":"自社の黒糖焼酎（米麹使用）としては唯一確認できた銘柄。2021年クラファンで発売開始","source":"https://takaokazyozo.official.ec/items/55634614","shared_kura":["高岡醸造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黒"},{"id":"高岡醸造株式会社::ルリカケスホワイト","kura":"高岡醸造株式会社","island":"徳之島","joint_bottler":null,"category":"ラム","status":"現行","name":"ルリカケスホワイト","kana":"ルリカケス","abv":[40],"koji":null,"distillation":null,"aging":null,"note":"★米麹不使用のラム酒（黒糖のみが原料）。同社代表銘柄だが黒糖焼酎ではない","source":"https://takaokazyozo.official.ec/items/80269316","shared_kura":["高岡醸造株式会社"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":false,"koji_simple":null},{"id":"高岡醸造株式会社::小夜曲（セレナーデ）","kura":"高岡醸造株式会社","island":"徳之島","joint_bottler":null,"category":"ラム","status":"現行","name":"小夜曲（セレナーデ）","kana":"セレナーデ","abv":[35],"koji":null,"distillation":null,"aging":"樫樽で20年以上熟成","note":"★麹不使用のダークラム","source":"https://takaokazyozo.official.ec/items/35608615","shared_kura":["高岡醸造株式会社"],"joint":false,"abv_max":35,"abv_min":35,"has_aging":true,"koji_simple":null},{"id":"高岡醸造株式会社::神酒","kura":"高岡醸造株式会社","island":"徳之島","joint_bottler":null,"category":"ラム","status":"現行","name":"神酒","kana":"おみき","abv":[50],"koji":null,"distillation":null,"aging":null,"note":"★麹不使用のホワイトラム","source":"https://takaokazyozo.official.ec/items/35608587","shared_kura":["高岡醸造株式会社"],"joint":false,"abv_max":50,"abv_min":50,"has_aging":false,"koji_simple":null},{"id":"中村酒造株式会社::ブラック奄美","kura":"中村酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"ブラック奄美","kana":null,"abv":[40],"koji":"白麹","distillation":null,"aging":"樫樽貯蔵・3年以上","note":"★共同瓶詰銘柄。麹は酒販店記載のみ（公式記載なし）","source":"https://tokunoshima-shochu.com/products/black","shared_kura":["中村酒造株式会社"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":"白"},{"id":"中村酒造株式会社::奄美エイジング","kura":"中村酒造株式会社","island":"徳之島","joint_bottler":"奄美酒類株式会社","category":"黒糖焼酎","status":"現行","name":"奄美エイジング","kana":null,"abv":[25],"koji":null,"distillation":null,"aging":"樫樽貯蔵酒・3年以上","note":"★共同瓶詰銘柄","source":"https://amamishurui.co.jp/item.php","shared_kura":["中村酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":null},{"id":"有限会社松永酒造場::マルシカ","kura":"有限会社松永酒造場","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"マルシカ","kana":null,"abv":[25],"koji":null,"distillation":"常圧","aging":null,"note":"青ラベルが目印の現行フラッグシップ。麹は第三者DB1件のみに「黒麹」記載があり公式未確認のためnull。「10年以上長期熟成」の記載も酒販店1社のみで裏付けなし","source":"https://www.nankainn.com/news/p-economy/","shared_kura":["有限会社松永酒造場"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":null},{"id":"有限会社松永酒造場::ベビーマルシカ","kura":"有限会社松永酒造場","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"ベビーマルシカ","kana":null,"abv":[25],"koji":null,"distillation":null,"aging":null,"note":"マルシカの300ml小瓶","source":"https://tokunoshima-shochu.com/","shared_kura":["有限会社松永酒造場"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":null},{"id":"有限会社松永酒造場::まる鹿","kura":"有限会社松永酒造場","island":"徳之島","joint_bottler":null,"category":"黒糖焼酎","status":"終売","name":"まる鹿","kana":null,"abv":null,"koji":null,"distillation":null,"aging":null,"note":"★1952年創業当時からの旧銘柄。1965年に販売中止（終売品）。歴史的経緯の参考掲載","source":"https://www.nankainn.com/news/p-economy/","shared_kura":["有限会社松永酒造場"],"joint":false,"abv_max":null,"abv_min":null,"has_aging":false,"koji_simple":null},{"id":"沖永良部酒造株式会社::稲乃露","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"稲乃露","kana":"いねのつゆ","abv":[30],"koji":"白麹","distillation":"常圧","aging":null,"note":"「丁寧に仕込み、長い時をかけ熟成した」との記載はあるが具体的な貯蔵年数の明記なし","source":"https://www.inenotsuyu.com/inenotuyu","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":false,"koji_simple":"白"},{"id":"沖永良部酒造株式会社::えらぶ","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"えらぶ","kana":null,"abv":[30],"koji":"白麹","distillation":"常圧","aging":null,"note":"「熟成によるまろやかさ」との表現のみで具体的な貯蔵年数の記載なし","source":"https://www.inenotsuyu.com/erabu","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":false,"koji_simple":"白"},{"id":"沖永良部酒造株式会社::はなとり","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"はなとり","kana":null,"abv":[15,20,25],"koji":"白麹","distillation":"減圧","aging":null,"note":"15度・20度・25度の複数展開あり。貯蔵・熟成の記載なし","source":"https://www.inenotsuyu.com/hanatori","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":25,"abv_min":15,"has_aging":false,"koji_simple":"白"},{"id":"沖永良部酒造株式会社::稲乃露25% 長期貯蔵熟成","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"稲乃露25% 長期貯蔵熟成","kana":null,"abv":[25],"koji":"黒麹","distillation":"常圧","aging":"長期貯蔵熟成（具体的な年数は公式サイトに記載なし）","note":"度数は商品名表記に基づく。稲乃露（白麹）とは異なり黒麹使用と明記","source":"https://www.inenotsuyu.com/inenotuyu25","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"黒"},{"id":"沖永良部酒造株式会社::古酒白ゆり","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"古酒白ゆり","kana":"こしゅしらゆり","abv":[40],"koji":"白麹","distillation":"常圧","aging":"樽とタンクで長期貯蔵させた原酒をベースに使用（年数記載なし）","note":null,"source":"https://www.inenotsuyu.com/shirayuri","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":"白"},{"id":"沖永良部酒造株式会社::まぁさん","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"まぁさん","kana":null,"abv":[25],"koji":"白麹","distillation":"併用","aging":"タンクと樽で熟成させた原酒をブレンド（年数記載なし）","note":"商品ページの仕様欄に「常圧蒸留・減圧蒸留」と併記","source":"https://www.inenotsuyu.com/maasan","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":true,"koji_simple":"白"},{"id":"沖永良部酒造株式会社::花ノしずく","kura":"沖永良部酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"花ノしずく","kana":"はなのしずく","abv":[20],"koji":null,"distillation":"減圧","aging":null,"note":"大山百合香氏とのコラボ商品。ベースは「はなとり20度」。麹の記載なし","source":"https://www.inenotsuyu.com/hananosizuku","shared_kura":["沖永良部酒造株式会社"],"joint":false,"abv_max":20,"abv_min":20,"has_aging":false,"koji_simple":null},{"id":"新納酒造株式会社::天下一","kura":"新納酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"天下一","kana":"てんかいち","abv":[20,30],"koji":null,"distillation":"常圧","aging":"1年以上熟成","note":"麹の種類は確認できたページに記載なし。黒糖の使用割合が米麹の2倍と多いとの記載あり","source":"https://imadeya.co.jp/blogs/brewery/tenkaichi","shared_kura":["新納酒造株式会社"],"joint":false,"abv_max":30,"abv_min":20,"has_aging":true,"koji_simple":null},{"id":"新納酒造株式会社::水連洞","kura":"新納酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"水連洞","kana":"すいれんどう","abv":[40],"koji":null,"distillation":"常圧","aging":"仕次にて5年以上熟成","note":"原材料表示は「米こうじ（タイ産米）」のみで麹菌の色の指定なし","source":"https://okinoreabu.theshop.jp/items/42257842","shared_kura":["新納酒造株式会社"],"joint":false,"abv_max":40,"abv_min":40,"has_aging":true,"koji_simple":null},{"id":"新納酒造株式会社::天下無双","kura":"新納酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"天下無双","kana":"てんかむそう","abv":[35],"koji":null,"distillation":null,"aging":null,"note":"黒糖ブロックをもろみに直接投入する新製法との記載あり。麹・蒸留・貯蔵の記載なし","source":"https://okinoreabu.theshop.jp/items/42257929","shared_kura":["新納酒造株式会社"],"joint":false,"abv_max":35,"abv_min":35,"has_aging":false,"koji_simple":null},{"id":"新納酒造株式会社::をちみづ","kura":"新納酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"をちみづ","kana":null,"abv":null,"koji":null,"distillation":"減圧","aging":null,"note":"度数・麹・貯蔵の記載なし。減圧蒸留のみ鹿児島県酒造組合ページに記載","source":"https://www.honkakushochu.or.jp/kuramoto/252/","shared_kura":["新納酒造株式会社"],"joint":false,"abv_max":null,"abv_min":null,"has_aging":false,"koji_simple":null},{"id":"原田酒造株式会社::昇龍","kura":"原田酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"昇龍","kana":"しょうりゅう","abv":[18,25,30],"koji":null,"distillation":null,"aging":"5年貯蔵古酒","note":"赤(30度)・白(25度)・青(18度)の3展開。公式一覧に麹・蒸留の記載なし","source":"https://www.haradasyuzo.com/products/","shared_kura":["原田酒造株式会社"],"joint":false,"abv_max":30,"abv_min":18,"has_aging":true,"koji_simple":null},{"id":"原田酒造株式会社::昇龍GOLD","kura":"原田酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"昇龍GOLD","kana":"しょうりゅうごーるど","abv":[30],"koji":"白麹","distillation":"常圧","aging":"熟成古酒使用（年数記載なし）","note":null,"source":"https://www.haradasyuzo.com/products/","shared_kura":["原田酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":true,"koji_simple":"白"},{"id":"原田酒造株式会社::三種の神氣","kura":"原田酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"三種の神氣","kana":null,"abv":[20,30,40],"koji":null,"distillation":null,"aging":"5年以上貯蔵","note":"原材料は「米こうじ（タイ産米）」のみで麹菌の色の記載なし","source":"https://www.haradasyuzo.com/products/","shared_kura":["原田酒造株式会社"],"joint":false,"abv_max":40,"abv_min":20,"has_aging":true,"koji_simple":null},{"id":"原田酒造株式会社::満月","kura":"原田酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"満月","kana":"まんげつ","abv":[30],"koji":null,"distillation":null,"aging":null,"note":"公式一覧に麹・蒸留・貯蔵の記載なし","source":"https://www.haradasyuzo.com/products/","shared_kura":["原田酒造株式会社"],"joint":false,"abv_max":30,"abv_min":30,"has_aging":false,"koji_simple":null},{"id":"原田酒造株式会社::PUKAPUKA","kura":"原田酒造株式会社","island":"沖永良部島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"PUKAPUKA","kana":null,"abv":[25],"koji":null,"distillation":null,"aging":null,"note":"公式一覧に麹・蒸留・貯蔵の記載なし","source":"https://www.haradasyuzo.com/products/","shared_kura":["原田酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":null},{"id":"有村酒造株式会社::島有泉","kura":"有村酒造株式会社","island":"与論島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"島有泉","kana":"しまゆうせん","abv":[20],"koji":"白麹","distillation":"常圧","aging":null,"note":"一次仕込みは甕仕込み。蒸留方法は製法解説ページの記載（個別商品ページには明記なし）","source":"https://shimayusen.jp/products/1417.html","shared_kura":["有村酒造株式会社"],"joint":false,"abv_max":20,"abv_min":20,"has_aging":false,"koji_simple":"白"},{"id":"有村酒造株式会社::島有泉 黒麹仕込み","kura":"有村酒造株式会社","island":"与論島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"島有泉 黒麹仕込み","kana":"しまゆうせん くろこうじじこみ","abv":[20],"koji":"黒麹","distillation":null,"aging":null,"note":"商品ページに蒸留方法・貯蔵の記載なし","source":"https://shimayusen.jp/products/2425.html","shared_kura":["有村酒造株式会社"],"joint":false,"abv_max":20,"abv_min":20,"has_aging":false,"koji_simple":"黒"},{"id":"有村酒造株式会社::島有泉 25度","kura":"有村酒造株式会社","island":"与論島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"島有泉 25度","kana":null,"abv":[25],"koji":null,"distillation":null,"aging":null,"note":"一覧で存在は確認できたが個別ページの詳細未確認","source":"https://shimayusen.jp/products/category/shimayusen","shared_kura":["有村酒造株式会社"],"joint":false,"abv_max":25,"abv_min":25,"has_aging":false,"koji_simple":null},{"id":"有村酒造株式会社::島有泉 35度","kura":"有村酒造株式会社","island":"与論島","joint_bottler":null,"category":"黒糖焼酎","status":"現行","name":"島有泉 35度","kana":null,"abv":[35],"koji":null,"distillation":"常圧","aging":null,"note":"麹は個別ページ未確認。蒸留方法は「甕使用・ドンブリ仕込み方式で常圧蒸留」との一般解説による","source":"https://shimayusen.jp/products/2431.html","shared_kura":["有村酒造株式会社"],"joint":false,"abv_max":35,"abv_min":35,"has_aging":false,"koji_simple":null}],"unresolved":["kura_amamioshima.json: [奄美大島酒造] 公式サイトがSSL証明書のドメイン不一致でアクセス不能。蔵・銘柄とも公式一次情報での直接確認ができず業界団体・酒販店情報で代替","kura_amamioshima.json: [奄美大島酒造] 創業年(1970年)は業界団体サイトのみに記載。浜千鳥乃詩GOLDの定番／限定の区分が未確認","kura_amamioshima.json: [奄美大島開運酒造] 「れんと」「アマミラビット」の麹の色種別が特定不可（原材料表記が「米こうじ」のみ）","kura_amamioshima.json: [奄美大島開運酒造] 「紅さんご」「あまみ六調」の具体的な熟成年数の明記なし。「あまみ六調」20度は個別ページ未確認","kura_amamioshima.json: [奄美大島開運酒造] 「開運伝説」は年間千本限定生産のため定番リストから除外","kura_amamioshima.json: [富田酒造場] 龍宮25度の麹種が不明。らんかん以外の全銘柄の蒸留方法が不明。蒸留後の貯蔵年数も不明（甕での仕込み工程の記載はあるが貯蔵期間の明記なし）","kura_amamioshima.json: [西平酒造] KANA BLACK・ISLANDの麹・蒸留方法が明記なし。巴モワの蒸留方法が不明。加那40度が現行品か旧規格かの区別が未確認","kura_amamioshima.json: [西平本家] せえごれ・氣（通常版）・天孫岳・わのらむの蒸留方法が明記なし（明記は八千代の常圧のみ）。「海咲」は公式現行一覧になく定番リストから除外","kura_amamioshima.json: [町田酒造] 創業年が情報源間で差異あり。「祈龍」は度数・麹・蒸留・貯蔵の情報が確認できず未収録","kura_amamioshima.json: [山田酒造] 公式サイトURLが見つからず。「花おしょろ」は銘柄名のみ確認でき仕様不明のため除外。きょらじまの麹種に表記揺れあり要再確認","kura_amamioshima.json: [弥生焼酎醸造場] 太古の黒うさぎ・碧い海・瓶仕込・弥生荒ろか・紬の里の蒸留方法が不明（公式個別ページが文字化け）。太古の黒うさぎの麹種も不明","kura_amamioshima.json: [弥生焼酎醸造場] 「黒麹仕込み弥生」はふるさと納税限定品のため定番リストから除外","kura_kikai_tokunoshima.json: 喜界島酒造: 公式サイト(kurochu.jp)は文字化けで本文未確認。しまっちゅ伝蔵・三年寝太蔵・キャプテンキッド・喜界島(25度)の麹の色が矛盾または未記載","kura_kikai_tokunoshima.json: 奄美大島にしかわ酒造: あまんゆ(27度)の麹・蒸留方法が公式カテゴリページに掲載なく未確認","kura_kikai_tokunoshima.json: 天川酒造: 単独の自社公式サイトが存在せず。単独の自社ブランドは現行流通品として確認できず全銘柄が共同瓶詰。奄美酒類の加盟蔵数が情報源間で4蔵/5蔵と食い違い","kura_kikai_tokunoshima.json: 高岡醸造: 創業年が公式(1947年)と鹿児島県酒造組合(1949年)で食い違い。所在地も一部情報源で別住所。ラム酒各銘柄の蒸留方法は公式記載なし","kura_kikai_tokunoshima.json: 中村酒造: 単独の自社公式サイトが存在せず。奄美・ブラック奄美・奄美エイジング・奄美の匠の蒸留方法、奄美エイジングの麹が未記載","kura_kikai_tokunoshima.json: 松永酒造場: 公式サイトがアクセスごとに矛盾する内容を返す不具合のため業界団体・地元紙・酒販店情報で代替。マルシカの麹は裏付け不足","kura_okinoerabu_yoron.json: 新納酒造：公式サイトURLが見つからない（業界団体・観光協会・小売店サイトで代替）","kura_okinoerabu_yoron.json: 新納酒造：「天下一」「天下無双」の麹の種類が記載なし","kura_okinoerabu_yoron.json: 新納酒造：「をちみづ」の度数・麹・貯蔵が記載なし","kura_okinoerabu_yoron.json: 新納酒造：「寿(ことぶき)」（35度・900ml）は存在確認できたが公式相当の詳細ページが特定できず不記載","kura_okinoerabu_yoron.json: 原田酒造：「昇龍」「三種の神氣」「満月」「PUKAPUKA」の麹・蒸留方法が公式一覧に記載なし（昇龍GOLDのみ記載あり）","kura_okinoerabu_yoron.json: 原田酒造：「Dragon IslanD」は度数5%表記のため缶チューハイ等の派生商品の可能性があり主要銘柄から除外","kura_okinoerabu_yoron.json: 有村酒造：創業年が情報源により食い違うためnull（1947年説あるも沿革の記述が不一致・公式about.htmlに明記なし）","kura_okinoerabu_yoron.json: 有村酒造：「島有泉25度」の麹・蒸留・貯蔵の詳細未確認","kura_okinoerabu_yoron.json: 有村酒造：「島有泉35度」の麹の種類が個別ページに記載なし"],"data_issues":["★重複: 天川酒造と中村酒造に「奄美」「黒奄美」「奄美の匠」「煌の島」が二重計上されている。いずれも共同瓶詰会社『奄美酒類株式会社』の共同銘柄で、複数蔵の原酒をブレンドしたもの。蔵単位のマップでは別枠扱いが必要","★カテゴリ混在: 高岡醸造の主力3銘柄（ルリカケス・小夜曲・神酒）は米麹不使用のラム酒であり黒糖焼酎ではない。同社の黒糖焼酎は「世萬代」1銘柄のみ","★終売品: 松永酒造場「まる鹿」は1965年終売。歴史的参考として保持"]};
+const B = DATA.brands.filter(b => b.category === "黒糖焼酎" && b.status === "現行");
+const ISL = {"奄美大島":"var(--i-amami)","喜界島":"var(--i-kikai)","徳之島":"var(--i-toku)","沖永良部島":"var(--i-oki)","与論島":"var(--i-yoron)"};
+const KURA = Object.fromEntries(DATA.kura.map(k => [k.name, k]));
+const KEY = "kokuto_records_v1";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- 記録の保存（localStorage が使えない環境でも落ちないように） ---------- */
+let REC = {};
+try { REC = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch(e) { REC = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(REC)); } catch(e) {
+  alert("このブラウザでは記録を保存できません。JSONで書き出して保管してください。"); } }
+
+/* ---------- タブ ---------- */
+document.querySelectorAll('nav button').forEach(b => b.onclick = () => {
+  document.querySelectorAll('nav button').forEach(x => x.setAttribute('aria-selected', x === b));
+  document.querySelectorAll('main section').forEach(s => s.hidden = (s.id !== b.dataset.t));
+  if (b.dataset.t === "map") drawMap();
+  if (b.dataset.t === "list") drawList();
+  window.scrollTo(0,0);
+});
+
+/* ---------- 診断 ---------- */
+const Q = [
+ {id:"nomi", q:"今日は、どう飲みたい気分ですか？", a:[
+   {k:"oyu",  t:"お湯割り"},        {k:"rock", t:"ロック"},
+   {k:"mizu", t:"水割り"},          {k:"soda", t:"炭酸割り"},
+   {k:"st",   t:"ストレートで少しずつ"}, {k:"any", t:"決めていない"}]},
+ {id:"kaori", q:"香りは、どんなタイプが好みですか？",
+  note:"公開されている蒸留方法・貯蔵容器・麹で絞り込みます（かっこ内が実際に使うデータ）。香りの言い方は一般に言われる傾向で、味を保証するものではありません。「黄麹＝薫りが華やかに立つ」は弥生焼酎醸造所の公式説明です。",
+  a:[
+   {k:"joatsu",  t:"原料の香りをしっかり（常圧蒸留）"},
+   {k:"genatsu", t:"軽やかでクセが少ない（減圧蒸留）"},
+   {k:"taru",    t:"樽で寝かせた香ばしさ（樽貯蔵）"},
+   {k:"kame",    t:"甕・壺のまろやかさ（甕仕込み・甕貯蔵）"},
+   {k:"kikoji",  t:"華やかな香り（黄麹・3銘柄のみ）"},
+   {k:"any",     t:"こだわらない"}]},
+ {id:"abv", q:"度数は？", a:[
+   {k:"low", t:"軽め（20度以下）"}, {k:"std", t:"定番（25度前後）"},
+   {k:"high", t:"しっかり（30度以上）"}, {k:"any", t:"こだわらない"}]},
+ {id:"kodawari", q:"ほかに気になるところはありますか？",
+  note:"蔵や原料の背景で絞り込みます。ここも、公開情報に書かれている範囲だけを見ています（書かれていない＝やっていない、ではありません）。",
+  a:[
+   {k:"genryo", t:"島の原料にこだわったもの"},
+   {k:"roho",   t:"100年以上続く蔵のもの"},
+   {k:"seiho",  t:"独自の製法のもの"},
+   {k:"choki",  t:"長く寝かせたもの（5年以上）"},
+   {k:"any",    t:"特にない"}]},
+];
+const ANS = {};
+document.getElementById("qs").innerHTML = Q.map(q =>
+  `<div class="card"><p class="q">${esc(q.q)}</p>` +
+  (q.note ? `<p class="qnote">${esc(q.note)}</p>` : "") + `<div class="opts">` +
+  q.a.map(a => `<button class="opt" data-q="${q.id}" data-k="${a.k}" aria-pressed="false">${esc(a.t)}</button>`).join("") +
+  `</div></div>`).join("");
+document.querySelectorAll(".opt").forEach(o => o.onclick = () => {
+  document.querySelectorAll(`.opt[data-q="${o.dataset.q}"]`).forEach(x => x.setAttribute("aria-pressed","false"));
+  o.setAttribute("aria-pressed","true"); ANS[o.dataset.q] = o.dataset.k;
+});
+document.getElementById("reset").onclick = () => {
+  document.querySelectorAll(".opt").forEach(x => x.setAttribute("aria-pressed","false"));
+  Object.keys(ANS).forEach(k => delete ANS[k]);
+  document.getElementById("out").innerHTML = "";
+};
+
+/* 条件マッチ方式。4つの質問それぞれについて
+   「当てはまる／当てはまらない／データがなく判定できない」を出し、当てはまった数でまとめる。
+   重み付けをしないので、銘柄のあいだに順位はつかない。 */
+const ISL_ORDER = ["奄美大島","喜界島","徳之島","沖永良部島","与論島"];
+function evalBrand(b){
+  const items = [];
+  const D = b.distillation, M = b.abv_max, AG = b.has_aging, AT = b.aging || "";
+  const push = (label, ok, why) => items.push({label, ok, why: why || ""});
+
+  if (ANS.nomi && ANS.nomi !== "any"){
+    const t = {
+      oyu:  [D==null?null:(D==="常圧"||D==="併用"), "お湯割り向き：常圧蒸留",   "蒸留方法が非公開"],
+      rock: [M==null?null:M>=30,                    "ロック向き：30度以上",     "度数が不明"],
+      mizu: [M==null?null:M<=27,                    "水割り向き：27度以下",     "度数が不明"],
+      soda: [D==null?null:(D==="減圧"||D==="併用"), "炭酸割り向き：減圧蒸留",   "蒸留方法が非公開"],
+      st:   [M==null?null:M>=35,                    "ストレート向き：35度以上", "度数が不明"],
+    }[ANS.nomi];
+    push(t[1], t[0], t[2]);
+  }
+  if (ANS.kaori && ANS.kaori !== "any"){
+    const KJ = b.koji || "";
+    const t = {
+      joatsu:  [D==null?null:(D==="常圧"||D==="併用"), "原料の香りがしっかり：常圧蒸留",   "蒸留方法が非公開"],
+      genatsu: [D==null?null:(D==="減圧"||D==="併用"), "軽やかでクセが少ない：減圧蒸留",   "蒸留方法が非公開"],
+      taru:    [AT ? /樽|樫|オーク/.test(AT) : null,   "樽で寝かせた香ばしさ：樽貯蔵",     "貯蔵の記載がない"],
+      kame:    [AT ? /甕|かめ|壺|壷/.test(AT) : null,  "甕・壺を使っている",               "貯蔵・仕込みの記載がない"],
+      kikoji:  [KJ ? /黄/.test(KJ) : null,             "華やかな香り：黄麹仕込み",         "麹の種類が非公開"],
+    }[ANS.kaori];
+    push(t[1], t[0], t[2]);
+  }
+  if (ANS.abv && ANS.abv !== "any"){
+    const t = { low:[M==null?null:M<=20,"20度以下"], std:[M==null?null:(M>=24&&M<=28),"25度前後"],
+                high:[M==null?null:M>=30,"30度以上"] }[ANS.abv];
+    push("度数：" + t[1], t[0], "度数が不明");
+  }
+  if (ANS.kodawari && ANS.kodawari !== "any"){
+    const K = KURA[b.kura] || {};
+    const bag = [b.aging, b.note, K.description, K.note].filter(Boolean).join(" ");
+    const fy = String(K.founded || "").match(/(18|19|20)\d\d/);
+    // aging 欄は貯蔵・熟成を書く欄なので、そこの年数は原則そのまま熟成年数とみなす。
+    // ただし「40年以上使い込んだ甕壺」のような“道具の年季”は熟成年数ではないので除く。
+    const yr = (() => {
+      const ys = [];
+      for (const m of AT.matchAll(/(\d+)\s*(?:年|ヶ年|ケ年)/g)) {
+        const around = AT.slice(Math.max(0, m.index - 7), m.index + m[0].length + 9);
+        if (/使い込|使用|前から|創業|使っ/.test(around)) continue;
+        ys.push(parseInt(m[1], 10));
+      }
+      return ys.length ? Math.max(...ys) : 0;
+    })();
+    const t = {
+      genryo: [/奄美大島産|奄美大島100|奄美市.{0,6}産|徳之島産|喜界島産|自家栽培|自社栽培|有機|JAS|無農薬/.test(bag),
+               "奄美群島の原料・自社栽培のこだわりを掲げている", ""],
+      roho:   [fy ? (2026 - parseInt(fy[0],10) >= 100) : null, "創業100年以上の蔵", "創業年が確認できない"],
+      seiho:  [/音響|ソニック|スッポン|仕次|シツギ|荒濾過|荒ろか|半麹三段|可変式|ドンブリ/.test(bag),
+               "独自の製法を掲げている", ""],
+      choki:  [yr ? yr >= 5 : null, "5年以上寝かせている", "熟成年数の記載がない"],
+    }[ANS.kodawari];
+    push(t[1], t[0], t[2]);
+  }
+  return {items, hit: items.filter(x=>x.ok===true).length,
+          unknown: items.filter(x=>x.ok===null).length, asked: items.length};
+}
+document.getElementById("go").onclick = () => {
+  const asked = ["nomi","kaori","abv","kodawari"].filter(k => ANS[k] && ANS[k] !== "any");
+  if (!asked.length){ document.getElementById("out").innerHTML =
+    `<div class="empty">まだ条件が選ばれていません。<br>
+     <span style="font-size:12.5px">（「決めていない」「どちらでも」「こだわらない」だけでは絞り込めません）</span></div>`; return; }
+  const n = asked.length;
+  const all = B.map(b => ({b, ...evalBrand(b)}))
+    .sort((x,z) => ISL_ORDER.indexOf(x.b.island) - ISL_ORDER.indexOf(z.b.island)
+                || x.b.kura.localeCompare(z.b.kura,"ja") || x.b.name.localeCompare(z.b.name,"ja"));
+  const groups = [];
+  for (let h = n; h >= 1; h--){ const g = all.filter(x => x.hit === h); if (g.length) groups.push({h, g}); }
+  if (!groups.length){ document.getElementById("out").innerHTML =
+    `<div class="empty">当てはまる銘柄がありませんでした。条件を変えてみてください。</div>`; return; }
+  const unknownTotal = all.filter(x => x.unknown > 0).length;
+  document.getElementById("out").innerHTML =
+    `<div class="note">${n}つの条件のうち<b>いくつ当てはまったか</b>で分けています。
+     当てはまった数が同じ銘柄のあいだに<b>順序はつけていません</b>（島の順に並べています）。
+     製法の一部が非公開の銘柄は判定できる条件が少ないぶん、下のまとまりに入りやすくなります（該当 ${unknownTotal} 銘柄）。
+     これは<b>公開データの絞り込み</b>であって、飲み比べた結果ではありません。</div>` +
+    groups.map((gr, i) => `<details ${i===0?"open":""}>
+      <summary><b>${n}つ中 ${gr.h}つ当てはまった銘柄</b>　${gr.g.length}本</summary>
+      <div class="grp">${gr.g.map(x => card(x.b, x.items)).join("")}</div></details>`).join("");
+  document.getElementById("out").scrollIntoView({behavior:"smooth", block:"start"});
+};
+function card(b, items){
+  const mark = o => o===true ? `<span class="ck y">当てはまる</span>`
+              : o===false ? `<span class="ck n">当てはまらない</span>`
+              : `<span class="ck u">判定できない</span>`;
+  return `<div class="res">
+    <h3>${esc(b.name)}${b.kana?` <span style="font-size:12px;color:var(--ink-2)">（${esc(b.kana)}）</span>`:""}</h3>
+    <p class="kura">${esc(b.kura)}${b.joint?"ほか":""} ／ ${esc(b.island)}</p>
+    ${tags(b)}
+    ${items&&items.length?`<ul class="chk">${items.map(it =>
+      `<li>${mark(it.ok)}${esc(it.label)}${it.ok===null&&it.why?`<span class="uw">（${esc(it.why)}）</span>`:""}</li>`).join("")}</ul>`:""}
+    ${b.note?`<p class="why" style="border:none;padding-top:4px">${esc(b.note)}</p>`:""}
+    ${/受賞|コンクール|金賞|総裁賞|モンドセレクション/.test(b.note||"")
+      ? `<p class="award-note">※受賞歴は今回の調査で拾えた分だけです。載っていない蔵が受賞していないという意味ではありません。</p>` : ""}
+  </div>`;
+}
+function tags(b){
+  const t = [];
+  t.push(`<span class="tag isl" style="background:${ISL[b.island]}">${esc(b.island)}</span>`);
+  if (b.abv && b.abv.length) t.push(`<span class="tag">${b.abv.join("・")}度</span>`);
+  t.push(b.koji ? `<span class="tag">${esc(b.koji)}</span>` : `<span class="tag unk">麹 未確認</span>`);
+  t.push(b.distillation ? `<span class="tag">${esc(b.distillation)}蒸留</span>` : `<span class="tag unk">蒸留 未確認</span>`);
+  if (b.aging) t.push(`<span class="tag">${esc(b.aging.length>26?b.aging.slice(0,26)+"…":b.aging)}</span>`);
+  if (b.joint) t.push(`<span class="tag joint">共同瓶詰（${b.shared_kura.length}蔵の原酒）</span>`);
+  return `<div class="tags">${t.join("")}</div>`;
+}
+
+/* ---------- 一覧・記録 ---------- */
+const uniq = (f) => [...new Set(B.map(f).filter(Boolean))].sort();
+function opt(sel, list, all){ sel.innerHTML = `<option value="">${all}</option>` + list.map(v=>`<option>${esc(v)}</option>`).join(""); }
+opt(document.getElementById("f-isl"), ["奄美大島","喜界島","徳之島","沖永良部島","与論島"], "すべての島");
+opt(document.getElementById("f-koji"), uniq(b=>b.koji_simple), "すべての麹");
+opt(document.getElementById("f-dist"), uniq(b=>b.distillation), "すべての蒸留法");
+document.getElementById("f-abv").innerHTML =
+  `<option value="">すべての度数</option><option value="l">20度以下</option><option value="m">21〜29度</option><option value="h">30度以上</option>`;
+["f-isl","f-koji","f-dist","f-abv","f-q"].forEach(id =>
+  document.getElementById(id).addEventListener("input", drawList));
+
+function drawList(){
+  const isl=f("f-isl"), kj=f("f-koji"), ds=f("f-dist"), ab=f("f-abv"), q=f("f-q").trim();
+  function f(id){ return document.getElementById(id).value; }
+  const rows = B.filter(b =>
+    (!isl || b.island===isl) && (!kj || b.koji_simple===kj) && (!ds || b.distillation===ds) &&
+    (!ab || (ab==="l"&&b.abv_max<=20) || (ab==="m"&&b.abv_max>20&&b.abv_max<30) || (ab==="h"&&b.abv_max>=30)) &&
+    (!q || (b.name+b.kura+(b.kana||"")).includes(q)));
+  document.getElementById("cnt").textContent = `記録済み ${Object.keys(REC).length} 件 ／ 表示 ${rows.length} 銘柄`;
+  document.getElementById("listout").innerHTML = rows.length ? `<div class="tbl-wrap"><table>
+    <thead><tr><th>銘柄</th><th>蔵・島</th><th>度数</th><th>麹</th><th>蒸留</th><th>貯蔵</th><th>記録</th></tr></thead>
+    <tbody>${rows.map(b=>{
+      const r = REC[b.id];
+      return `<tr><td><b>${esc(b.name)}</b>${b.joint?`<br><span class="tag joint">共同瓶詰</span>`:""}</td>
+      <td>${esc(b.kura)}<br><span style="color:var(--ink-2);font-size:11.5px">${esc(b.island)}</span></td>
+      <td>${b.abv?b.abv.join("・"):"—"}</td>
+      <td>${b.koji?esc(b.koji):'<span style="color:var(--warn)">未確認</span>'}</td>
+      <td>${b.distillation?esc(b.distillation):'<span style="color:var(--warn)">未確認</span>'}</td>
+      <td style="font-size:11.5px;max-width:190px">${b.aging?esc(b.aging):"—"}</td>
+      <td><button class="btn ghost" style="padding:5px 11px;font-size:12px" onclick="rec('${esc(b.id).replace(/'/g,"\\'")}')">${r?"✓ 編集":"記録する"}</button></td></tr>`;
+    }).join("")}</tbody></table></div>` : `<div class="empty">条件に合う銘柄がありません。</div>`;
+}
+const AX = [["甘い","ドライ","sweet"],["軽い","重い","body"],["香り控えめ","香り華やか","aroma"],
+            ["後味すっきり","余韻が長い","finish"],["無色透明","濃い琥珀","color"]];
+window.rec = function(id){
+  const b = B.find(x=>x.id===id); if(!b) return;
+  const r = REC[id] || {sweet:3,body:3,aroma:3,finish:3,color:1,date:new Date().toISOString().slice(0,10),memo:"",where:""};
+  const html = `<div class="card" id="recbox" style="border-color:var(--accent)">
+    <h3 style="margin:0 0 2px;font-size:16px">${esc(b.name)}</h3>
+    <p class="kura" style="margin:0 0 12px;color:var(--ink-2);font-size:12.5px">${esc(b.kura)} ／ ${esc(b.island)}</p>
+    ${AX.map(([l,rt,k])=>`<div class="slider"><span>${l}</span>
+      <input type="range" min="1" max="5" step="1" value="${r[k] ?? 3}" data-k="${k}">
+      <span class="r">${rt}</span></div>`).join("")}
+    <div class="grid" style="margin-top:12px">
+      <div><label class="f">飲んだ日</label><input type="date" id="r-date" value="${esc(r.date)}"></div>
+      <div><label class="f">どこで</label><input type="text" id="r-where" value="${esc(r.where)}" placeholder="店名・自宅など"></div>
+    </div>
+    <div style="margin-top:10px"><label class="f">メモ</label>
+      <textarea id="r-memo" rows="2" style="width:100%">${esc(r.memo)}</textarea></div>
+    <div class="row" style="margin-top:12px">
+      <button class="btn" id="r-save">保存する</button>
+      <button class="btn ghost" id="r-cancel">閉じる</button>
+      ${REC[id]?`<button class="btn ghost" id="r-del" style="color:#b03a3a">記録を削除</button>`:""}
+    </div></div>`;
+  const box = document.createElement("div"); box.innerHTML = html;
+  const old = document.getElementById("recbox"); if(old) old.remove();
+  document.getElementById("listout").prepend(box.firstChild);
+  document.getElementById("recbox").scrollIntoView({behavior:"smooth",block:"center"});
+  document.getElementById("r-save").onclick = () => {
+    const o = {name:b.name, kura:b.kura, island:b.island};
+    document.querySelectorAll("#recbox input[type=range]").forEach(s => o[s.dataset.k] = +s.value);
+    o.date = document.getElementById("r-date").value;
+    o.where = document.getElementById("r-where").value;
+    o.memo = document.getElementById("r-memo").value;
+    REC[id] = o; save(); document.getElementById("recbox").remove(); drawList();
+  };
+  document.getElementById("r-cancel").onclick = () => document.getElementById("recbox").remove();
+  if (REC[id]) document.getElementById("r-del").onclick = () => {
+    if(confirm("この記録を削除しますか？")){ delete REC[id]; save(); document.getElementById("recbox").remove(); drawList(); } };
+};
+document.getElementById("exp").onclick = () => {
+  const blob = new Blob([JSON.stringify(REC,null,2)], {type:"application/json"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `黒糖焼酎_飲み活記録_${new Date().toISOString().slice(0,10)}.json`;
+  a.click(); URL.revokeObjectURL(a.href);
+};
+document.getElementById("imp").onclick = () => document.getElementById("impf").click();
+document.getElementById("impf").onchange = e => {
+  const f = e.target.files[0]; if(!f) return;
+  const fr = new FileReader();
+  fr.onload = () => { try {
+      const o = JSON.parse(fr.result);
+      if (typeof o !== "object" || Array.isArray(o)) throw new Error("形式が違います");
+      REC = {...REC, ...o}; save(); drawList(); alert("読み込みました。");
+    } catch(err){ alert("読み込めませんでした：" + err.message); } };
+  fr.readAsText(f); e.target.value = "";
+};
+
+/* ---------- マップ ---------- */
+function drawMap(){
+  const rs = Object.entries(REC);
+  const el = document.getElementById("mapout");
+  if (!rs.length){ el.innerHTML = `<div class="empty">
+    まだ1本も記録がありません。<br><br>
+    「銘柄一覧・記録」タブで、飲んだ銘柄の印象を入れると、ここに点が増えていきます。<br>
+    <span style="font-size:12.5px">— この空白が、いま公開情報で分かることの限界です。</span></div>`; return; }
+  const W=680,H=470,P=62;
+  const x = v => P + (v-1)/4*(W-P*2), y = v => H-P - (v-1)/4*(H-P*2);
+  const pts = rs.map(([id,r]) => {
+    const b = B.find(x=>x.id===id) || {island:"奄美大島"};
+    return `<g><circle cx="${x(r.sweet).toFixed(1)}" cy="${y(r.body).toFixed(1)}" r="7" fill="${ISL[b.island]||"#888"}" fill-opacity=".78" stroke="#fff" stroke-width="1.5"/>
+    <text x="${(x(r.sweet)+11).toFixed(1)}" y="${(y(r.body)+4).toFixed(1)}">${esc(r.name)}</text></g>`;
+  }).join("");
+  const gridlines = [1,2,3,4,5].map(v=>
+    `<line x1="${x(v)}" y1="${P}" x2="${x(v)}" y2="${H-P}" stroke="var(--line)" stroke-width="1"/>
+     <line x1="${P}" y1="${y(v)}" x2="${W-P}" y2="${y(v)}" stroke="var(--line)" stroke-width="1"/>`).join("");
+  el.innerHTML = `<div class="card" style="overflow-x:auto">
+    <svg viewBox="0 0 ${W} ${H}" width="100%" style="min-width:560px;max-width:${W}px;display:block;margin:0 auto">
+      <rect x="${P}" y="${P}" width="${W-P*2}" height="${H-P*2}" fill="#fff" stroke="var(--line)"/>
+      ${gridlines}${pts}
+      <text x="${W/2}" y="${H-22}" text-anchor="middle" font-weight="700">甘い　→　ドライ</text>
+      <text x="20" y="${H/2}" text-anchor="middle" font-weight="700" transform="rotate(-90 20 ${H/2})">軽い　→　重い</text>
+    </svg>
+    <div class="legend">${Object.entries(ISL).map(([k,v])=>`<span><i style="background:${v}"></i>${k}</span>`).join("")}</div>
+  </div>
+  <div class="note">記録 <b>${rs.length}</b> 件を、甘さ（横）と重さ（縦）で置いています。
+  香り・後味・色も記録されていますが、この図では使っていません（2軸しか描けないため）。
+  <b>書き出したJSONを持ち寄れば、複数人ぶんを重ねられます。</b></div>`;
+}
+
+/* ---------- 蔵で聞くこと ---------- */
+(function(){
+  const byKura = {};
+  B.forEach(b => {
+    const k = byKura[b.kura] ||= {island:b.island, miss:{麹:[], 蒸留方法:[], 貯蔵熟成:[], 度数:[]}, n:0};
+    k.n++;
+    if(!b.koji) k.miss.麹.push(b.name);
+    if(!b.distillation) k.miss.蒸留方法.push(b.name);
+    if(!b.aging) k.miss.貯蔵熟成.push(b.name);
+    if(!b.abv_max) k.miss.度数.push(b.name);
+  });
+  const kuraMeta = Object.fromEntries(DATA.kura.map(k=>[k.name,k]));
+  const blocks = Object.entries(byKura)
+    .map(([name,v]) => {
+      const items = Object.entries(v.miss).filter(([,arr])=>arr.length)
+        .map(([f,arr]) => `<li><b>${f}</b>が未確認：${arr.map(esc).join("、")}（${arr.length}銘柄）</li>`);
+      const meta = kuraMeta[name] || {};
+      const extra = [];
+      if (!meta.website) extra.push("<li>公式サイトが見つからなかった。銘柄の一次情報をどこで見ればよいか</li>");
+      if (meta.joint_bottler) extra.push(`<li>共同瓶詰（${esc(meta.joint_bottler)}）銘柄のほかに、<b>自社単独の銘柄</b>はあるか</li>`);
+      return {name, island:v.island, n:items.length+extra.length,
+        html:`<div class="kura-blk"><h4>${esc(name)}</h4>
+        <p class="meta">${esc(v.island)} ／ 収録 ${v.n}銘柄${meta.website?"":" ／ <span style='color:var(--warn)'>公式サイト未確認</span>"}</p>
+        <ul class="ask">${items.join("")}${extra.join("")}</ul></div>`};
+    })
+    .filter(b=>b.n>0).sort((a,b)=> ISL_ORDER.indexOf(a.island)-ISL_ORDER.indexOf(b.island)
+                              || a.name.localeCompare(b.name,"ja"));
+  document.getElementById("askout").innerHTML =
+    `<div class="note">島の順に並べています。全部聞く必要はありません。
+     「公開情報にこう書いてありました」と確認する形にすると、蔵の方の手間が減ります。</div>` +
+    `<div class="card">${blocks.map(b=>b.html).join("")}</div>`;
+})();
+
+/* ---------- このデータについて ---------- */
+(function(){
+  const sho = B;
+  const pct = f => Math.round(sho.filter(b=>b[f]).length / sho.length * 100);
+  document.getElementById("aboutout").innerHTML = `
+  <div class="card">
+    <div class="stat">
+      <div><b>${DATA.meta.kura_count}</b>蔵</div>
+      <div><b>${sho.length}</b>銘柄（黒糖焼酎・現行品）</div>
+      <div><b>${pct("abv_max")}%</b>度数が判明</div>
+      <div><b>${pct("koji_simple")}%</b>麹が判明</div>
+      <div><b>${pct("distillation")}%</b>蒸留方法が判明</div>
+    </div>
+    <p style="font-size:13.5px;margin:0">
+    ${esc(DATA.meta.collected)}時点の<b>公開情報のみ</b>から集めています。蔵元の公式サイトを最優先し、
+    記載がない項目は酒販店・業界団体・自治体の情報で補い、それでも見つからないものは<b>推測せず空欄</b>にしました。
+    各銘柄の出典URLは元データ（<code>data/master.json</code>）に入っています。</p>
+  </div>
+  <div class="card">
+    <h3 style="margin:0 0 8px;font-size:15px">分かったこと</h3>
+    <ul style="margin:0;padding-left:19px;font-size:13.5px">
+      <li><b>「黒糖焼酎＝黒麹」ではありません。</b>判明した分では白麹 ${sho.filter(b=>b.koji_simple==="白").length} 対 黒麹 ${sho.filter(b=>b.koji_simple==="黒").length} で、白麹が主流でした。</li>
+      <li><b>黄麹はごくわずか</b>（${sho.filter(b=>b.koji_simple==="黄").length}銘柄）。希少性を数字で言えます。</li>
+      <li><b>複数の蔵が原酒を持ち寄る「共同瓶詰」という仕組みがあります。</b>天川酒造・中村酒造の銘柄は共同瓶詰会社「奄美酒類」を通じて流通しており、同じ4銘柄が両蔵に重複して出てきました（このツールでは1件に統合しています）。沖永良部酒造も島内4蔵による共同瓶詰会社です。</li>
+      <li><b>ラム酒を主軸にしている蔵もあります。</b>高岡醸造は自社培養の天然酵母で1979年に国産初のゴールドラム「ルリカケス」を発売した蔵です。ラムは米麹を使わないため、黒糖焼酎だけを収録しているこのツールには「世萬代」1銘柄が載っています。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin:0 0 8px;font-size:15px">このツールがしないこと</h3>
+    <ul style="margin:0;padding-left:19px;font-size:13.5px">
+      <li>味の優劣をつけません。味の座標は<b>飲んだ人が入れるまで空</b>です。</li>
+      <li>製法から味を断定しません。「常圧＝香りが濃い」等は一般に言われる傾向で、実際の味は飲んで確かめてください。</li>
+      <li>限定品・終売品・ふるさと納税限定品は原則入れていません。</li>
+      <li><b>受賞歴を網羅していません。</b>調査で拾えた銘柄にだけ書かれている状態です。載っていない蔵が受賞していないという意味ではありません。</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="margin:0 0 8px;font-size:15px">未解決の項目（${DATA.unresolved.length}件）</h3>
+    <ul style="margin:0;padding-left:19px;font-size:12.5px;color:var(--ink-2)">
+      ${DATA.unresolved.map(u=>`<li>${esc(u.replace(/^kura_[a-z_]+\.json: /,""))}</li>`).join("")}
+    </ul>
+  </div>`;
+})();
+drawList();
+</script>
+</body></html>
