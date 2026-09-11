@@ -50,10 +50,17 @@
   footer{padding:2rem 0 3rem;border-top:1px solid var(--line);margin-top:1rem}
   footer p{font-size:12px;color:var(--ink-soft);margin:0 0 6px}
   footer a{color:var(--amber-2)}
+
+  #site-nav-kokuto{position:sticky;top:0;z-index:999;background:#16120d;border-bottom:1px solid rgba(255,255,255,.12);font-family:-apple-system,'Hiragino Sans',sans-serif}
+  #site-nav-kokuto .wrap{max-width:1000px;margin:0 auto;padding:10px 22px;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;font-size:13px}
+  #site-nav-kokuto .links{display:flex;flex-wrap:wrap;gap:6px 18px;margin-left:auto}
+  #site-nav-kokuto a{color:#e7e2d8;text-decoration:none;opacity:.85;white-space:nowrap}
+  #site-nav-kokuto a.active{color:#f2d9a8;font-weight:700;opacity:1}
+  @media(max-width:420px){#site-nav-kokuto .wrap{padding:9px 16px;font-size:12.5px}}
 </style>
 </head>
 <body>
-<div id="site-nav-kokuto" style="position:sticky;top:0;z-index:999;background:#16120d;border-bottom:1px solid rgba(255,255,255,.12);font-family:-apple-system,'Hiragino Sans',sans-serif"><div style="max-width:1000px;margin:0 auto;padding:10px 22px;display:flex;gap:18px;align-items:center;font-size:13px"><a href="index.html" style="color:#f2d9a8;text-decoration:none;font-weight:700">黒糖焼酎KOKUTOO</a><span style="flex:1"></span><a href="tsukurikata.html" style="color:#e7e2d8;text-decoration:none;opacity:.85">つくりかた</a><a href="map.html" style="color:#e7e2d8;text-decoration:none;opacity:.85">ポジショニングマップ</a></div></div>
+<div id="site-nav-kokuto"><div class="wrap"><a href="index.html" class="active">黒糖焼酎KOKUTOO</a><div class="links"><a href="tsukurikata.html">つくりかた</a><a href="map.html">ポジショニングマップ</a></div></div></div>
 
 <header class="hero">
   <div class="wrap">
